@@ -1,0 +1,43 @@
+{
+  "name": "bundle-react",
+  "version": "1.0.0",
+  "description": "React-SmartPy Bundle for Tezos dApp Developers",
+  "scripts": {
+    "sync": "node ./utils/scripts/compileSync.js",
+    "test": "bash ./utils/scripts/checkScenario.sh",
+    "compile": "npm run run-code",
+    "run-code": "bash ./utils/scripts/compileCode.sh",
+    "deploy": "node ./utils/ConseilJsUtils/deployContract.js",
+    "get-entry-points": "bash ./utils/scripts/getEntryPoints.sh",
+    "client-install": "npm install --prefix client",
+    "dapp": "npm start --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tezsure/Bundle-react.git"
+  },
+  "keywords": [
+    "Tezos",
+    "Blockchain",
+    "SmartPy"
+  ],
+  "author": "Tezsure Inc.",
+  "contributors": [
+    {
+      "name": "Dibyo Majumder",
+      "email": "dibyomajumder23@gmail.com",
+      "url": "https://github.com/dibyo007dev"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tezsure/Bundle-react/issues"
+  },
+  "homepage": "https://github.com/Tezsure/Bundle-react#readme",
+  "dependencies": {
+    "bs58check": "^2.1.2",
+    "chalk": "^4.1.0",
+    "conseiljs": "0.4.3",
+    "libsodium-wrappers-sumo": "^0.7.6"
+  }
+}

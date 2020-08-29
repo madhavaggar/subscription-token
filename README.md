@@ -9,6 +9,7 @@ using a timestamp. Now the susbscriber is in full control of the subscription. I
 revoke the allowance at any time and asks for a pre-approval every time. The terms of the subscription
 cannot be changed.
 The issues to address here are:
+
 • What happens when the value of the currency of payment, changes?
 • Devise a mechanism to update the on-chain subscription and change the value of the
 subscription.
@@ -20,6 +21,7 @@ the main subscription holder and allowing for a mechanism of shared payments.
 on a single payment account.
 • Thus users can stake their claims on different contracts (735) or a single contract can have
 multiple delegates(1056).
+
 The Tech-Stack:
 • SmartPy
 • ConseilJS

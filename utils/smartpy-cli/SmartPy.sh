@@ -127,7 +127,7 @@ case "$1" in
     "local-install-custom" )
         install_from download "$2" "$3" ;;
     "local-install-auto" )
-        install_from download https://smartpy.io/dev/cli "$2" ;;
+        install_from download https://smartpy.io/dev-20200824-49d2e75aa10f51a9194ba744ee19d27731d85e2d/cli "$2" ;;
     "local-install-from" )
         shift
         install_from cp "$1" "$2" ;;
@@ -143,7 +143,7 @@ case "$1" in
     "run" )
         shift
         export NODE_PATH=$smartpy_install_path/node_modules:$NODE_PATH
-        python3 $install_path/smartpybasic.py "$@" ;;
+        python3 $install_path/smartpy_cli.py "$@" ;;
     "test-sandbox" )
         shift
         call_app run-smartpy-test-in-interpreter "$@"

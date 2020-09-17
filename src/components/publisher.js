@@ -103,7 +103,7 @@ class Publisher extends Component {
           <div className="form-field">
             <label>To Address:</label>
             <Blockie
-              address={toAddress.toLowerCase()}
+              address={toAddress}
               config={{size:3}}
             />
             <input type="text" style={{width: '415px'}} name="toAddress" value={toAddress} onChange={this.handleInput.bind(this)} />

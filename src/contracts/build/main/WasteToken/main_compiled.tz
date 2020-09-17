@@ -34,10 +34,10 @@ code
                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : @parameter%approve : @storage
                 IF_SOME
                   {
-                    # of_some: Get-item:-1 # @some : nat : @parameter%approve : @storage
+                    # of_some: Get-item:38 # @some : nat : @parameter%approve : @storage
                   }
                   {
-                    PUSH string "Get-item:-1"; # string : nat : @parameter%approve : @storage
+                    PUSH int 38; # int : nat : @parameter%approve : @storage
                     FAILWITH;   # FAILED
                   }; # @some : nat : @parameter%approve : @storage
                 CAR;        # map address nat : nat : @parameter%approve : @storage
@@ -88,11 +88,9 @@ code
                 DUG 2;      # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
                 IF_SOME
+                  {}
                   {
-                    # of_some: set_in_top-any # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
-                  }
-                  {
-                    PUSH string "set_in_top-any"; # string : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
+                    PUSH int 40; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
                     FAILWITH;   # FAILED
                   }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
                 DUP;        # @some : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
@@ -101,11 +99,11 @@ code
                 CAR;        # map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
                 DIG 6;      # @parameter%approve : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
                 DUP;        # @parameter%approve : @parameter%approve : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                DUG 7;      # @parameter%approve : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
-                CDR;        # nat : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
-                SOME;       # option nat : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
-                DIG 7;      # @parameter%approve : option nat : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                CAR;        # address : option nat : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                CAR;        # address : @parameter%approve : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                SWAP;       # @parameter%approve : address : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                CDR;        # nat : address : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                SOME;       # option nat : address : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                SWAP;       # address : option nat : map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
                 UPDATE;     # map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
                 PAIR;       # pair (map address nat) nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
                 SOME;       # option (pair (map address nat) nat) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
@@ -148,7 +146,7 @@ code
                     # of_some: Get-item:66 # @some : nat : @parameter%burn : @storage
                   }
                   {
-                    PUSH string "Get-item:66"; # string : nat : @parameter%burn : @storage
+                    PUSH int 66; # int : nat : @parameter%burn : @storage
                     FAILWITH;   # FAILED
                   }; # @some : nat : @parameter%burn : @storage
                 CDR;        # nat : nat : @parameter%burn : @storage
@@ -181,11 +179,9 @@ code
                 DUG 2;      # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
                 IF_SOME
+                  {}
                   {
-                    # of_some: set_in_top-any # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
-                  }
-                  {
-                    PUSH string "set_in_top-any"; # string : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
+                    PUSH int 67; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
                     FAILWITH;   # FAILED
                   }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
                 CAR;        # map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
@@ -202,10 +198,10 @@ code
                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                 IF_SOME
                   {
-                    # of_some: Get-item:66 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
+                    # of_some: Get-item:67 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                   }
                   {
-                    PUSH string "Get-item:66"; # string : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
+                    PUSH int 67; # int : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                     FAILWITH;   # FAILED
                   }; # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                 CDR;        # nat : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
@@ -214,7 +210,7 @@ code
                 IF_SOME
                   {}
                   {
-                    UNIT;       # unit : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
+                    PUSH int 67; # int : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                     FAILWITH;   # FAILED
                   }; # @some : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                 SWAP;       # map address nat : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
@@ -241,7 +237,7 @@ code
                 IF_SOME
                   {}
                   {
-                    UNIT;       # unit : bool : pair address (big_map address (pair (map address nat) nat))
+                    PUSH int 68; # int : bool : pair address (big_map address (pair (map address nat) nat))
                     FAILWITH;   # FAILED
                   }; # @some : bool : pair address (big_map address (pair (map address nat) nat))
                 SWAP;       # bool : @some : pair address (big_map address (pair (map address nat) nat))
@@ -262,7 +258,7 @@ code
                 IF_SOME
                   {}
                   {
-                    UNIT;       # unit : list operation : @storage
+                    PUSH int 89; # int : list operation : @storage
                     FAILWITH;   # FAILED
                   }; # @some : list operation : @storage
                 PUSH mutez 0; # mutez : @some : list operation : @storage
@@ -286,7 +282,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : list operation : @parameter%getAllowance : @storage
+                        PUSH int 81; # int : list operation : @parameter%getAllowance : @storage
                         FAILWITH;   # FAILED
                       }; # @some : list operation : @parameter%getAllowance : @storage
                     PUSH mutez 0; # mutez : @some : list operation : @parameter%getAllowance : @storage
@@ -304,7 +300,7 @@ code
                         # of_some: Get-item:81 # @some : mutez : @some : list operation : @parameter%getAllowance : @storage
                       }
                       {
-                        PUSH string "Get-item:81"; # string : mutez : @some : list operation : @parameter%getAllowance : @storage
+                        PUSH int 81; # int : mutez : @some : list operation : @parameter%getAllowance : @storage
                         FAILWITH;   # FAILED
                       }; # @some : mutez : @some : list operation : @parameter%getAllowance : @storage
                     CAR;        # map address nat : mutez : @some : list operation : @parameter%getAllowance : @storage
@@ -316,7 +312,7 @@ code
                         # of_some: Get-item:81 # @some : mutez : @some : list operation : @storage
                       }
                       {
-                        PUSH string "Get-item:81"; # string : mutez : @some : list operation : @storage
+                        PUSH int 81; # int : mutez : @some : list operation : @storage
                         FAILWITH;   # FAILED
                       }; # @some : mutez : @some : list operation : @storage
                     TRANSFER_TOKENS; # operation : list operation : @storage
@@ -347,11 +343,12 @@ code
                         CAR;        # address : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
                         SWAP;       # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
                         CDR;        # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        PUSH (option (pair (map %approvals address nat) (nat %balance))) (Some (Pair {} 0)); # option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        DIG 4;      # @parameter%getBalance : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                        DUP;        # @parameter%getBalance : @parameter%getBalance : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                        DUG 5;      # @parameter%getBalance : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        CDR;        # address : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
+                        DIG 3;      # @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                        DUP;        # @parameter%getBalance : @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                        DUG 4;      # @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
+                        CDR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
+                        PUSH (option (pair (map %approvals address nat) (nat %balance))) (Some (Pair {} 0)); # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
+                        SWAP;       # address : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
                         UPDATE;     # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
                         SWAP;       # address : big_map address (pair (map %approvals address nat) (nat %balance)) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
                         PAIR;       # pair address (big_map address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
@@ -367,7 +364,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : list operation : @parameter%getBalance : @storage
+                        PUSH int 77; # int : list operation : @parameter%getBalance : @storage
                         FAILWITH;   # FAILED
                       }; # @some : list operation : @parameter%getBalance : @storage
                     PUSH mutez 0; # mutez : @some : list operation : @parameter%getBalance : @storage
@@ -380,10 +377,10 @@ code
                     GET;        # option (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @storage
                     IF_SOME
                       {
-                        # of_some: Get-item:76 # @some : mutez : @some : list operation : @storage
+                        # of_some: Get-item:77 # @some : mutez : @some : list operation : @storage
                       }
                       {
-                        PUSH string "Get-item:76"; # string : mutez : @some : list operation : @storage
+                        PUSH int 77; # int : mutez : @some : list operation : @storage
                         FAILWITH;   # FAILED
                       }; # @some : mutez : @some : list operation : @storage
                     CDR;        # nat : mutez : @some : list operation : @storage
@@ -406,7 +403,7 @@ code
                 IF_SOME
                   {}
                   {
-                    UNIT;       # unit : list operation : @storage
+                    PUSH int 85; # int : list operation : @storage
                     FAILWITH;   # FAILED
                   }; # @some : list operation : @storage
                 PUSH mutez 0; # mutez : @some : list operation : @storage
@@ -456,11 +453,12 @@ code
                     CAR;        # address : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                     SWAP;       # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                     CDR;        # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                    PUSH (option (pair (map %approvals address nat) (nat %balance))) (Some (Pair {} 0)); # option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                    DIG 4;      # @parameter%mint : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                    DUP;        # @parameter%mint : @parameter%mint : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                    DUG 5;      # @parameter%mint : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                    CAR;        # address : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                    DIG 3;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                    DUP;        # @parameter%mint : @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                    DUG 4;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                    CAR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                    PUSH (option (pair (map %approvals address nat) (nat %balance))) (Some (Pair {} 0)); # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                    SWAP;       # address : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                     UPDATE;     # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                     SWAP;       # address : big_map address (pair (map %approvals address nat) (nat %balance)) : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                     PAIR;       # pair address (big_map address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint
@@ -470,51 +468,34 @@ code
                 SWAP;       # @storage : @parameter%mint
                 # self.data.balances[params.address].balance += params.value # @storage : @parameter%mint
                 DUP;        # @storage : @storage : @parameter%mint
-                DUG 2;      # @storage : @parameter%mint : @storage
-                DUP;        # @storage : @storage : @parameter%mint : @storage
-                CDR;        # pair (bool %paused) (nat %totalSupply) : @storage : @parameter%mint : @storage
-                SWAP;       # @storage : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                CAR;        # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                DUP;        # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                CAR;        # address : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                SWAP;       # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                CDR;        # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                DUP;        # big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                DIG 4;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @storage
-                DUP;        # @parameter%mint : @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @storage
-                DUG 5;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                CAR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                DUP;        # address : address : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                DUG 2;      # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                GET;        # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
+                CDR;        # pair (bool %paused) (nat %totalSupply) : @storage : @parameter%mint
+                SWAP;       # @storage : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                CAR;        # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                DUP;        # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                CAR;        # address : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                SWAP;       # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                CDR;        # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                DUP;        # big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                DIG 4;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                DUP;        # @parameter%mint : @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                DUG 5;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                CAR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                DUP;        # address : address : big_map address (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                DUG 2;      # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                GET;        # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                 IF_SOME
+                  {}
                   {
-                    # of_some: set_in_top-any # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                  }
-                  {
-                    PUSH string "set_in_top-any"; # string : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
+                    PUSH int 59; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                     FAILWITH;   # FAILED
-                  }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                CAR;        # map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                DIG 5;      # @parameter%mint : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @storage
-                DUP;        # @parameter%mint : @parameter%mint : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @storage
-                DUG 6;      # @parameter%mint : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                CDR;        # nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint : @storage
-                DIG 7;      # @storage : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                CADR;       # big_map address (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                DIG 7;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                DUP;        # @parameter%mint : @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                DUG 8;      # @parameter%mint : big_map address (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                CAR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                IF_SOME
-                  {
-                    # of_some: Get-item:58 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                  }
-                  {
-                    PUSH string "Get-item:58"; # string : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
-                    FAILWITH;   # FAILED
-                  }; # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                  }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                DUP;        # @some : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                CAR;        # map address nat : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                SWAP;       # @some : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                CDR;        # nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                DIG 6;      # @parameter%mint : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                DUP;        # @parameter%mint : @parameter%mint : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                DUG 7;      # @parameter%mint : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                 CDR;        # nat : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                 ADD;        # nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                 SWAP;       # map address nat : nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
@@ -527,15 +508,15 @@ code
                 PAIR;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%mint
                 # self.data.totalSupply += params.value # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%mint
                 DUP;        # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%mint
-                DUG 2;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%mint : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                DUP;        # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%mint : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                CAR;        # pair address (big_map address (pair (map address nat) nat)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%mint : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                SWAP;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                CDAR;       # bool : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                DIG 2;      # @parameter%mint : bool : pair address (big_map address (pair (map address nat) nat)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                CDR;        # nat : bool : pair address (big_map address (pair (map address nat) nat)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                DIG 3;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : nat : bool : pair address (big_map address (pair (map address nat) nat))
-                CDDR;       # nat : nat : bool : pair address (big_map address (pair (map address nat) nat))
+                CAR;        # pair address (big_map address (pair (map address nat) nat)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%mint
+                SWAP;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint
+                CDR;        # pair (bool %paused) (nat %totalSupply) : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint
+                DUP;        # pair (bool %paused) (nat %totalSupply) : pair (bool %paused) (nat %totalSupply) : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint
+                CAR;        # bool : pair (bool %paused) (nat %totalSupply) : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint
+                SWAP;       # pair (bool %paused) (nat %totalSupply) : bool : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint
+                CDR;        # nat : bool : pair address (big_map address (pair (map address nat) nat)) : @parameter%mint
+                DIG 3;      # @parameter%mint : nat : bool : pair address (big_map address (pair (map address nat) nat))
+                CDR;        # nat : nat : bool : pair address (big_map address (pair (map address nat) nat))
                 ADD;        # nat : bool : pair address (big_map address (pair (map address nat) nat))
                 SWAP;       # bool : nat : pair address (big_map address (pair (map address nat) nat))
                 PAIR;       # pair bool nat : pair address (big_map address (pair (map address nat) nat))
@@ -648,10 +629,10 @@ code
                                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : @parameter%transfer : @storage
                                 IF_SOME
                                   {
-                                    # of_some: Get-item:25 # @some : nat : @parameter%transfer : @storage
+                                    # of_some: Get-item:26 # @some : nat : @parameter%transfer : @storage
                                   }
                                   {
-                                    PUSH string "Get-item:25"; # string : nat : @parameter%transfer : @storage
+                                    PUSH int 26; # int : nat : @parameter%transfer : @storage
                                     FAILWITH;   # FAILED
                                   }; # @some : nat : @parameter%transfer : @storage
                                 CAR;        # map address nat : nat : @parameter%transfer : @storage
@@ -659,10 +640,10 @@ code
                                 GET;        # option nat : nat : @parameter%transfer : @storage
                                 IF_SOME
                                   {
-                                    # of_some: Get-item:-1 # @some : nat : @parameter%transfer : @storage
+                                    # of_some: Get-item:26 # @some : nat : @parameter%transfer : @storage
                                   }
                                   {
-                                    PUSH string "Get-item:-1"; # string : nat : @parameter%transfer : @storage
+                                    PUSH int 26; # int : nat : @parameter%transfer : @storage
                                     FAILWITH;   # FAILED
                                   }; # @some : nat : @parameter%transfer : @storage
                                 COMPARE;    # int : @parameter%transfer : @storage
@@ -699,11 +680,12 @@ code
                         CAR;        # address : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         SWAP;       # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         CDR;        # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                        PUSH (option (pair (map %approvals address nat) (nat %balance))) (Some (Pair {} 0)); # option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                        DIG 4;      # @parameter%transfer : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                        DUP;        # @parameter%transfer : @parameter%transfer : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                        DUG 5;      # @parameter%transfer : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                        CDAR;       # address : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        DIG 3;      # @parameter%transfer : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                        DUP;        # @parameter%transfer : @parameter%transfer : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
+                        DUG 4;      # @parameter%transfer : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        CDAR;       # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        PUSH (option (pair (map %approvals address nat) (nat %balance))) (Some (Pair {} 0)); # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        SWAP;       # address : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         UPDATE;     # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         SWAP;       # address : big_map address (pair (map %approvals address nat) (nat %balance)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         PAIR;       # pair address (big_map address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
@@ -724,10 +706,10 @@ code
                     GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : @parameter%transfer : @storage
                     IF_SOME
                       {
-                        # of_some: Get-item:25 # @some : nat : @parameter%transfer : @storage
+                        # of_some: Get-item:28 # @some : nat : @parameter%transfer : @storage
                       }
                       {
-                        PUSH string "Get-item:25"; # string : nat : @parameter%transfer : @storage
+                        PUSH int 28; # int : nat : @parameter%transfer : @storage
                         FAILWITH;   # FAILED
                       }; # @some : nat : @parameter%transfer : @storage
                     CDR;        # nat : nat : @parameter%transfer : @storage
@@ -760,11 +742,9 @@ code
                     DUG 2;      # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
                     GET;        # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
                     IF_SOME
+                      {}
                       {
-                        # of_some: set_in_top-any # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
-                      }
-                      {
-                        PUSH string "set_in_top-any"; # string : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
+                        PUSH int 29; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
                         FAILWITH;   # FAILED
                       }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
                     CAR;        # map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
@@ -781,10 +761,10 @@ code
                     GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     IF_SOME
                       {
-                        # of_some: Get-item:25 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        # of_some: Get-item:29 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                       }
                       {
-                        PUSH string "Get-item:25"; # string : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        PUSH int 29; # int : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         FAILWITH;   # FAILED
                       }; # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     CDR;        # nat : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
@@ -793,7 +773,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        PUSH int 29; # int : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         FAILWITH;   # FAILED
                       }; # @some : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     SWAP;       # map address nat : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
@@ -806,52 +786,35 @@ code
                     PAIR;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer
                     # self.data.balances[params.to_].balance += params.value # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer
                     DUP;        # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer
-                    DUG 2;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUP;        # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    CDR;        # pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    SWAP;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    CAR;        # pair address (big_map address (pair (map address nat) nat)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUP;        # pair address (big_map address (pair (map address nat) nat)) : pair address (big_map address (pair (map address nat) nat)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    CAR;        # address : pair address (big_map address (pair (map address nat) nat)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    SWAP;       # pair address (big_map address (pair (map address nat) nat)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    CDR;        # big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUP;        # big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DIG 4;      # @parameter%transfer : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUP;        # @parameter%transfer : @parameter%transfer : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUG 5;      # @parameter%transfer : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    CDAR;       # address : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUP;        # address : address : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUG 2;      # address : big_map address (pair (map address nat) nat) : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    GET;        # option (pair (map address nat) nat) : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                    CDR;        # pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer
+                    SWAP;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    CAR;        # pair address (big_map address (pair (map address nat) nat)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    DUP;        # pair address (big_map address (pair (map address nat) nat)) : pair address (big_map address (pair (map address nat) nat)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    CAR;        # address : pair address (big_map address (pair (map address nat) nat)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    SWAP;       # pair address (big_map address (pair (map address nat) nat)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    CDR;        # big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    DUP;        # big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    DIG 4;      # @parameter%transfer : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                    DUP;        # @parameter%transfer : @parameter%transfer : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                    DUG 5;      # @parameter%transfer : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    CDAR;       # address : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    DUP;        # address : address : big_map address (pair (map address nat) nat) : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    DUG 2;      # address : big_map address (pair (map address nat) nat) : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    GET;        # option (pair (map address nat) nat) : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     IF_SOME
+                      {}
                       {
-                        # of_some: set_in_top-any # @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                      }
-                      {
-                        PUSH string "set_in_top-any"; # string : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        PUSH int 30; # int : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         FAILWITH;   # FAILED
-                      }; # @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    CAR;        # map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DIG 5;      # @parameter%transfer : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUP;        # @parameter%transfer : @parameter%transfer : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DUG 6;      # @parameter%transfer : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    CDDR;       # nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    DIG 7;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                    CADR;       # big_map address (pair (map address nat) nat) : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                    DIG 7;      # @parameter%transfer : big_map address (pair (map address nat) nat) : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                    DUP;        # @parameter%transfer : @parameter%transfer : big_map address (pair (map address nat) nat) : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                    DUG 8;      # @parameter%transfer : big_map address (pair (map address nat) nat) : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                    CDAR;       # address : big_map address (pair (map address nat) nat) : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                    GET;        # option (pair (map address nat) nat) : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                    IF_SOME
-                      {
-                        # of_some: Get-item:27 # @some : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                      }
-                      {
-                        PUSH string "Get-item:27"; # string : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                        FAILWITH;   # FAILED
-                      }; # @some : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                    CDR;        # nat : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                      }; # @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    DUP;        # @some : @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    CAR;        # map address nat : @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    SWAP;       # @some : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    CDR;        # nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    DIG 6;      # @parameter%transfer : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                    DUP;        # @parameter%transfer : @parameter%transfer : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                    DUG 7;      # @parameter%transfer : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                    CDDR;       # nat : nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     ADD;        # nat : map address nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     SWAP;       # map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     PAIR;       # pair (map address nat) nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
@@ -904,55 +867,54 @@ code
                         DUG 2;      # address : big_map address (pair (map address nat) nat) : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         GET;        # option (pair (map address nat) nat) : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         IF_SOME
+                          {}
                           {
-                            # of_some: set_in_top-any # @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                          }
-                          {
-                            PUSH string "set_in_top-any"; # string : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                            PUSH int 32; # int : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                             FAILWITH;   # FAILED
                           }; # @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         DUP;        # @some : @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         CDR;        # nat : @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         SWAP;       # @some : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         CAR;        # map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        DIG 6;      # @parameter%transfer : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        DUP;        # @parameter%transfer : @parameter%transfer : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        DUG 7;      # @parameter%transfer : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        CDDR;       # nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        DIG 8;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                        CADR;       # big_map address (pair (map address nat) nat) : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
-                        DIG 8;      # @parameter%transfer : big_map address (pair (map address nat) nat) : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        CAR;        # address : big_map address (pair (map address nat) nat) : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        GET;        # option (pair (map address nat) nat) : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        SENDER;     # address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        DIG 7;      # @parameter%transfer : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        DUP;        # @parameter%transfer : @parameter%transfer : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        DUG 8;      # @parameter%transfer : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        CDDR;       # nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        DIG 9;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        CADR;       # big_map address (pair (map address nat) nat) : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        DIG 9;      # @parameter%transfer : big_map address (pair (map address nat) nat) : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        CAR;        # address : big_map address (pair (map address nat) nat) : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        GET;        # option (pair (map address nat) nat) : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         IF_SOME
                           {
-                            # of_some: Get-item:25 # @some : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            # of_some: Get-item:32 # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                           }
                           {
-                            PUSH string "Get-item:25"; # string : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            PUSH int 32; # int : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                             FAILWITH;   # FAILED
-                          }; # @some : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        CAR;        # map address nat : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        SENDER;     # address : map address nat : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        GET;        # option nat : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                          }; # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        CAR;        # map address nat : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        SENDER;     # address : map address nat : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        GET;        # option nat : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         IF_SOME
                           {
-                            # of_some: Get-item:-1 # @some : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            # of_some: Get-item:32 # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                           }
                           {
-                            PUSH string "Get-item:-1"; # string : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            PUSH int 32; # int : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                             FAILWITH;   # FAILED
-                          }; # @some : nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        SUB;        # int : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        ISNAT;      # option nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                          }; # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        SUB;        # int : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        ISNAT;      # option nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            PUSH int 32; # int : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                             FAILWITH;   # FAILED
-                          }; # @some : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        SOME;       # option nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
-                        SENDER;     # address : option nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                          }; # @some : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        SOME;       # option nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                        SWAP;       # address : option nat : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         UPDATE;     # map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         PAIR;       # pair (map address nat) nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         SOME;       # option (pair (map address nat) nat) : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
@@ -971,4 +933,4 @@ code
           }; # list operation : @storage
       }; # list operation : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
     PAIR;       # pair (list operation) (pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)))
-  } # pair (list operation) (pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)))
+  };

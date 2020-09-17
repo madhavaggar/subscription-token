@@ -19,13 +19,6 @@ code
             IF_SOME
               {
                 DROP;       # @parameter%cancelSub : @storage
-                PUSH bool True; # bool : @parameter%cancelSub : @storage
-              }
-              {
-                PUSH bool False; # bool : @parameter%cancelSub : @storage
-              }; # bool : @parameter%cancelSub : @storage
-            IF
-              {
                 SWAP;       # @storage : @parameter%cancelSub
                 DUP;        # @storage : @storage : @parameter%cancelSub
                 DUG 2;      # @storage : @parameter%cancelSub : @storage
@@ -33,13 +26,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%cancelSub : @storage
-                    PUSH bool True; # bool : @parameter%cancelSub : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%cancelSub : @storage
-                  }; # bool : @parameter%cancelSub : @storage
-                IF
-                  {
                     DUP;        # @parameter%cancelSub : @parameter%cancelSub : @storage
                     CDAR;       # address : @parameter%cancelSub : @storage
                     DIG 2;      # @storage : address : @parameter%cancelSub
@@ -49,7 +35,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : address : @parameter%cancelSub : @storage
+                        PUSH int 166; # int : address : @parameter%cancelSub : @storage
                         FAILWITH;   # FAILED
                       }; # @some : address : @parameter%cancelSub : @storage
                     COMPARE;    # int : @parameter%cancelSub : @storage
@@ -76,13 +62,6 @@ code
             IF_SOME
               {
                 DROP;       # @parameter%cancelSub : @storage
-                PUSH bool True; # bool : @parameter%cancelSub : @storage
-              }
-              {
-                PUSH bool False; # bool : @parameter%cancelSub : @storage
-              }; # bool : @parameter%cancelSub : @storage
-            IF
-              {
                 SWAP;       # @storage : @parameter%cancelSub
                 DUP;        # @storage : @storage : @parameter%cancelSub
                 DUG 2;      # @storage : @parameter%cancelSub : @storage
@@ -90,13 +69,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%cancelSub : @storage
-                    PUSH bool True; # bool : @parameter%cancelSub : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%cancelSub : @storage
-                  }; # bool : @parameter%cancelSub : @storage
-                IF
-                  {
                     DUP;        # @parameter%cancelSub : @parameter%cancelSub : @storage
                     CDDAR;      # address : @parameter%cancelSub : @storage
                     DIG 2;      # @storage : address : @parameter%cancelSub
@@ -106,7 +78,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : address : @parameter%cancelSub : @storage
+                        PUSH int 167; # int : address : @parameter%cancelSub : @storage
                         FAILWITH;   # FAILED
                       }; # @some : address : @parameter%cancelSub : @storage
                     COMPARE;    # int : @parameter%cancelSub : @storage
@@ -133,13 +105,6 @@ code
             IF_SOME
               {
                 DROP;       # @parameter%cancelSub : @storage
-                PUSH bool True; # bool : @parameter%cancelSub : @storage
-              }
-              {
-                PUSH bool False; # bool : @parameter%cancelSub : @storage
-              }; # bool : @parameter%cancelSub : @storage
-            IF
-              {
                 SWAP;       # @storage : @parameter%cancelSub
                 DUP;        # @storage : @storage : @parameter%cancelSub
                 DUG 2;      # @storage : @parameter%cancelSub : @storage
@@ -147,13 +112,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%cancelSub : @storage
-                    PUSH bool True; # bool : @parameter%cancelSub : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%cancelSub : @storage
-                  }; # bool : @parameter%cancelSub : @storage
-                IF
-                  {
                     DUP;        # @parameter%cancelSub : @parameter%cancelSub : @storage
                     CDDDAR;     # nat : @parameter%cancelSub : @storage
                     DIG 2;      # @storage : nat : @parameter%cancelSub
@@ -163,7 +121,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : nat : @parameter%cancelSub : @storage
+                        PUSH int 168; # int : nat : @parameter%cancelSub : @storage
                         FAILWITH;   # FAILED
                       }; # @some : nat : @parameter%cancelSub : @storage
                     COMPARE;    # int : @parameter%cancelSub : @storage
@@ -190,13 +148,6 @@ code
             IF_SOME
               {
                 DROP;       # @parameter%cancelSub : @storage
-                PUSH bool True; # bool : @parameter%cancelSub : @storage
-              }
-              {
-                PUSH bool False; # bool : @parameter%cancelSub : @storage
-              }; # bool : @parameter%cancelSub : @storage
-            IF
-              {
                 SWAP;       # @storage : @parameter%cancelSub
                 DUP;        # @storage : @storage : @parameter%cancelSub
                 DUG 2;      # @storage : @parameter%cancelSub : @storage
@@ -204,13 +155,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%cancelSub : @storage
-                    PUSH bool True; # bool : @parameter%cancelSub : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%cancelSub : @storage
-                  }; # bool : @parameter%cancelSub : @storage
-                IF
-                  {
                     DUP;        # @parameter%cancelSub : @parameter%cancelSub : @storage
                     CDDDDAR;    # int : @parameter%cancelSub : @storage
                     DIG 2;      # @storage : int : @parameter%cancelSub
@@ -220,7 +164,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : int : @parameter%cancelSub : @storage
+                        PUSH int 169; # int : int : @parameter%cancelSub : @storage
                         FAILWITH;   # FAILED
                       }; # @some : int : @parameter%cancelSub : @storage
                     COMPARE;    # int : @parameter%cancelSub : @storage
@@ -247,13 +191,6 @@ code
             IF_SOME
               {
                 DROP;       # @parameter%cancelSub : @storage
-                PUSH bool True; # bool : @parameter%cancelSub : @storage
-              }
-              {
-                PUSH bool False; # bool : @parameter%cancelSub : @storage
-              }; # bool : @parameter%cancelSub : @storage
-            IF
-              {
                 SWAP;       # @storage : @parameter%cancelSub
                 DUP;        # @storage : @storage : @parameter%cancelSub
                 DUG 2;      # @storage : @parameter%cancelSub : @storage
@@ -261,13 +198,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%cancelSub : @storage
-                    PUSH bool True; # bool : @parameter%cancelSub : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%cancelSub : @storage
-                  }; # bool : @parameter%cancelSub : @storage
-                IF
-                  {
                     DUP;        # @parameter%cancelSub : @parameter%cancelSub : @storage
                     CDDDDDAR;   # nat : @parameter%cancelSub : @storage
                     DIG 2;      # @storage : nat : @parameter%cancelSub
@@ -277,7 +207,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : nat : @parameter%cancelSub : @storage
+                        PUSH int 170; # int : nat : @parameter%cancelSub : @storage
                         FAILWITH;   # FAILED
                       }; # @some : nat : @parameter%cancelSub : @storage
                     COMPARE;    # int : @parameter%cancelSub : @storage
@@ -296,7 +226,7 @@ code
                 PUSH string "WrongCondition: (~ self.data.reqGasPrice.is_some()) | (self.data.reqGasPrice.is_some() & (self.data.reqGasPrice.open_some() == params.gasPrice))"; # string : @parameter%cancelSub : @storage
                 FAILWITH;   # FAILED
               }; # @parameter%cancelSub : @storage
-            # elements = sp.local("elements", sp.pack(sp.record(a = params.tokenAmount, gP = params.gasPrice, n = params.nonce, p = params.publisher, pS = params.periodSeconds, s = params.subscriber, tA = params.tokenAddress)), sp.TBytes) # @parameter%cancelSub : @storage
+            # elements = sp.local("elements", sp.pack(sp.record(a = params.tokenAmount, gP = params.gasPrice, n = params.nonce, p = params.publisher, pS = params.periodSeconds, s = params.subscriber, tA = params.tokenAddress))) # @parameter%cancelSub : @storage
             DUP;        # @parameter%cancelSub : @parameter%cancelSub : @storage
             CDDAR;      # address : @parameter%cancelSub : @storage
             SWAP;       # @parameter%cancelSub : address : @storage
@@ -306,9 +236,8 @@ code
             PAIR %s %tA; # pair (address %s) (address %tA) : @parameter%cancelSub : @storage
             SWAP;       # @parameter%cancelSub : pair (address %s) (address %tA) : @storage
             DUP;        # @parameter%cancelSub : @parameter%cancelSub : pair (address %s) (address %tA) : @storage
-            DUG 2;      # @parameter%cancelSub : pair (address %s) (address %tA) : @parameter%cancelSub : @storage
-            CDDDDAR;    # int : pair (address %s) (address %tA) : @parameter%cancelSub : @storage
-            DIG 2;      # @parameter%cancelSub : int : pair (address %s) (address %tA) : @storage
+            CDDDDAR;    # int : @parameter%cancelSub : pair (address %s) (address %tA) : @storage
+            SWAP;       # @parameter%cancelSub : int : pair (address %s) (address %tA) : @storage
             DUP;        # @parameter%cancelSub : @parameter%cancelSub : int : pair (address %s) (address %tA) : @storage
             DUG 3;      # @parameter%cancelSub : int : pair (address %s) (address %tA) : @parameter%cancelSub : @storage
             CDAR;       # address : int : pair (address %s) (address %tA) : @parameter%cancelSub : @storage
@@ -316,9 +245,8 @@ code
             PAIR;       # pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%cancelSub : @storage
             SWAP;       # @parameter%cancelSub : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
             DUP;        # @parameter%cancelSub : @parameter%cancelSub : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
-            DUG 2;      # @parameter%cancelSub : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%cancelSub : @storage
-            CDDDDDDAR;  # nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%cancelSub : @storage
-            DIG 2;      # @parameter%cancelSub : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
+            CDDDDDDAR;  # nat : @parameter%cancelSub : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
+            SWAP;       # @parameter%cancelSub : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
             DUP;        # @parameter%cancelSub : @parameter%cancelSub : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
             DUG 3;      # @parameter%cancelSub : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%cancelSub : @storage
             CDDDDDAR;   # nat : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%cancelSub : @storage
@@ -334,9 +262,8 @@ code
             DUP;        # bytes : bytes : @parameter%cancelSub : @storage
             DIG 2;      # @parameter%cancelSub : bytes : bytes : @storage
             DUP;        # @parameter%cancelSub : @parameter%cancelSub : bytes : bytes : @storage
-            DUG 3;      # @parameter%cancelSub : bytes : bytes : @parameter%cancelSub : @storage
-            CDDDDDDDAR; # signature : bytes : bytes : @parameter%cancelSub : @storage
-            DIG 3;      # @parameter%cancelSub : signature : bytes : bytes : @storage
+            CDDDDDDDAR; # signature : @parameter%cancelSub : bytes : bytes : @storage
+            SWAP;       # @parameter%cancelSub : signature : bytes : bytes : @storage
             DUP;        # @parameter%cancelSub : @parameter%cancelSub : signature : bytes : bytes : @storage
             DUG 4;      # @parameter%cancelSub : signature : bytes : bytes : @parameter%cancelSub : @storage
             CDDDDDDDDR; # key : signature : bytes : bytes : @parameter%cancelSub : @storage
@@ -388,11 +315,9 @@ code
             DUG 2;      # bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))
             GET;        # option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))
             IF_SOME
+              {}
               {
-                # of_some: set_in_top-any # @some : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))
-              }
-              {
-                PUSH string "set_in_top-any"; # string : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))
+                PUSH int 273; # int : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))
                 FAILWITH;   # FAILED
               }; # @some : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))
             DUP;        # @some : @some : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))
@@ -428,13 +353,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%executeSubs : @storage
-                  }; # bool : @parameter%executeSubs : @storage
-                IF
-                  {
                     SWAP;       # @storage : @parameter%executeSubs
                     DUP;        # @storage : @storage : @parameter%executeSubs
                     DUG 2;      # @storage : @parameter%executeSubs : @storage
@@ -442,13 +360,6 @@ code
                     IF_SOME
                       {
                         DROP;       # @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : @parameter%executeSubs : @storage
-                      }; # bool : @parameter%executeSubs : @storage
-                    IF
-                      {
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : @storage
                         CDAR;       # address : @parameter%executeSubs : @storage
                         DIG 2;      # @storage : address : @parameter%executeSubs
@@ -458,7 +369,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : address : @parameter%executeSubs : @storage
+                            PUSH int 166; # int : address : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : address : @parameter%executeSubs : @storage
                         COMPARE;    # int : @parameter%executeSubs : @storage
@@ -485,13 +396,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%executeSubs : @storage
-                  }; # bool : @parameter%executeSubs : @storage
-                IF
-                  {
                     SWAP;       # @storage : @parameter%executeSubs
                     DUP;        # @storage : @storage : @parameter%executeSubs
                     DUG 2;      # @storage : @parameter%executeSubs : @storage
@@ -499,13 +403,6 @@ code
                     IF_SOME
                       {
                         DROP;       # @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : @parameter%executeSubs : @storage
-                      }; # bool : @parameter%executeSubs : @storage
-                    IF
-                      {
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : @storage
                         CDDAR;      # address : @parameter%executeSubs : @storage
                         DIG 2;      # @storage : address : @parameter%executeSubs
@@ -515,7 +412,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : address : @parameter%executeSubs : @storage
+                            PUSH int 167; # int : address : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : address : @parameter%executeSubs : @storage
                         COMPARE;    # int : @parameter%executeSubs : @storage
@@ -542,13 +439,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%executeSubs : @storage
-                  }; # bool : @parameter%executeSubs : @storage
-                IF
-                  {
                     SWAP;       # @storage : @parameter%executeSubs
                     DUP;        # @storage : @storage : @parameter%executeSubs
                     DUG 2;      # @storage : @parameter%executeSubs : @storage
@@ -556,13 +446,6 @@ code
                     IF_SOME
                       {
                         DROP;       # @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : @parameter%executeSubs : @storage
-                      }; # bool : @parameter%executeSubs : @storage
-                    IF
-                      {
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : @storage
                         CDDDAR;     # nat : @parameter%executeSubs : @storage
                         DIG 2;      # @storage : nat : @parameter%executeSubs
@@ -572,7 +455,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : nat : @parameter%executeSubs : @storage
+                            PUSH int 168; # int : nat : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : nat : @parameter%executeSubs : @storage
                         COMPARE;    # int : @parameter%executeSubs : @storage
@@ -599,13 +482,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%executeSubs : @storage
-                  }; # bool : @parameter%executeSubs : @storage
-                IF
-                  {
                     SWAP;       # @storage : @parameter%executeSubs
                     DUP;        # @storage : @storage : @parameter%executeSubs
                     DUG 2;      # @storage : @parameter%executeSubs : @storage
@@ -613,13 +489,6 @@ code
                     IF_SOME
                       {
                         DROP;       # @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : @parameter%executeSubs : @storage
-                      }; # bool : @parameter%executeSubs : @storage
-                    IF
-                      {
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : @storage
                         CDDDDAR;    # int : @parameter%executeSubs : @storage
                         DIG 2;      # @storage : int : @parameter%executeSubs
@@ -629,7 +498,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : int : @parameter%executeSubs : @storage
+                            PUSH int 169; # int : int : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : int : @parameter%executeSubs : @storage
                         COMPARE;    # int : @parameter%executeSubs : @storage
@@ -656,13 +525,6 @@ code
                 IF_SOME
                   {
                     DROP;       # @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : @parameter%executeSubs : @storage
-                  }; # bool : @parameter%executeSubs : @storage
-                IF
-                  {
                     SWAP;       # @storage : @parameter%executeSubs
                     DUP;        # @storage : @storage : @parameter%executeSubs
                     DUG 2;      # @storage : @parameter%executeSubs : @storage
@@ -670,13 +532,6 @@ code
                     IF_SOME
                       {
                         DROP;       # @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : @parameter%executeSubs : @storage
-                      }; # bool : @parameter%executeSubs : @storage
-                    IF
-                      {
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : @storage
                         CDDDDDAR;   # nat : @parameter%executeSubs : @storage
                         DIG 2;      # @storage : nat : @parameter%executeSubs
@@ -686,7 +541,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : nat : @parameter%executeSubs : @storage
+                            PUSH int 170; # int : nat : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : nat : @parameter%executeSubs : @storage
                         COMPARE;    # int : @parameter%executeSubs : @storage
@@ -705,7 +560,7 @@ code
                     PUSH string "WrongCondition: (~ self.data.reqGasPrice.is_some()) | (self.data.reqGasPrice.is_some() & (self.data.reqGasPrice.open_some() == params.gasPrice))"; # string : @parameter%executeSubs : @storage
                     FAILWITH;   # FAILED
                   }; # @parameter%executeSubs : @storage
-                # elements = sp.local("elements", sp.pack(sp.record(a = params.tokenAmount, gP = params.gasPrice, n = params.nonce, p = params.publisher, pS = params.periodSeconds, s = params.subscriber, tA = params.tokenAddress)), sp.TBytes) # @parameter%executeSubs : @storage
+                # elements = sp.local("elements", sp.pack(sp.record(a = params.tokenAmount, gP = params.gasPrice, n = params.nonce, p = params.publisher, pS = params.periodSeconds, s = params.subscriber, tA = params.tokenAddress))) # @parameter%executeSubs : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : @storage
                 CDDAR;      # address : @parameter%executeSubs : @storage
                 SWAP;       # @parameter%executeSubs : address : @storage
@@ -715,9 +570,8 @@ code
                 PAIR %s %tA; # pair (address %s) (address %tA) : @parameter%executeSubs : @storage
                 SWAP;       # @parameter%executeSubs : pair (address %s) (address %tA) : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : pair (address %s) (address %tA) : @storage
-                DUG 2;      # @parameter%executeSubs : pair (address %s) (address %tA) : @parameter%executeSubs : @storage
-                CDDDDAR;    # int : pair (address %s) (address %tA) : @parameter%executeSubs : @storage
-                DIG 2;      # @parameter%executeSubs : int : pair (address %s) (address %tA) : @storage
+                CDDDDAR;    # int : @parameter%executeSubs : pair (address %s) (address %tA) : @storage
+                SWAP;       # @parameter%executeSubs : int : pair (address %s) (address %tA) : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : int : pair (address %s) (address %tA) : @storage
                 DUG 3;      # @parameter%executeSubs : int : pair (address %s) (address %tA) : @parameter%executeSubs : @storage
                 CDAR;       # address : int : pair (address %s) (address %tA) : @parameter%executeSubs : @storage
@@ -725,9 +579,8 @@ code
                 PAIR;       # pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%executeSubs : @storage
                 SWAP;       # @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
-                DUG 2;      # @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%executeSubs : @storage
-                CDDDDDDAR;  # nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%executeSubs : @storage
-                DIG 2;      # @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
+                CDDDDDDAR;  # nat : @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
+                SWAP;       # @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @storage
                 DUG 3;      # @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%executeSubs : @storage
                 CDDDDDAR;   # nat : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : @parameter%executeSubs : @storage
@@ -747,13 +600,6 @@ code
                 IF_SOME
                   {
                     DROP;       # bytes : @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                  }; # bool : bytes : @parameter%executeSubs : @storage
-                IF
-                  {
                     DIG 2;      # @storage : bytes : @parameter%executeSubs
                     DUP;        # @storage : @storage : bytes : @parameter%executeSubs
                     DUG 3;      # @storage : bytes : @parameter%executeSubs : @storage
@@ -761,13 +607,6 @@ code
                     IF_SOME
                       {
                         DROP;       # bytes : @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                      }; # bool : bytes : @parameter%executeSubs : @storage
-                    IF
-                      {
                         SWAP;       # @parameter%executeSubs : bytes : @storage
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : @storage
                         DUG 2;      # @parameter%executeSubs : bytes : @parameter%executeSubs : @storage
@@ -779,7 +618,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : address : bytes : @parameter%executeSubs : @storage
+                            PUSH int 166; # int : address : bytes : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : address : bytes : @parameter%executeSubs : @storage
                         COMPARE;    # int : bytes : @parameter%executeSubs : @storage
@@ -806,13 +645,6 @@ code
                 IF_SOME
                   {
                     DROP;       # bytes : @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                  }; # bool : bytes : @parameter%executeSubs : @storage
-                IF
-                  {
                     DIG 2;      # @storage : bytes : @parameter%executeSubs
                     DUP;        # @storage : @storage : bytes : @parameter%executeSubs
                     DUG 3;      # @storage : bytes : @parameter%executeSubs : @storage
@@ -820,13 +652,6 @@ code
                     IF_SOME
                       {
                         DROP;       # bytes : @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                      }; # bool : bytes : @parameter%executeSubs : @storage
-                    IF
-                      {
                         SWAP;       # @parameter%executeSubs : bytes : @storage
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : @storage
                         DUG 2;      # @parameter%executeSubs : bytes : @parameter%executeSubs : @storage
@@ -838,7 +663,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : address : bytes : @parameter%executeSubs : @storage
+                            PUSH int 167; # int : address : bytes : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : address : bytes : @parameter%executeSubs : @storage
                         COMPARE;    # int : bytes : @parameter%executeSubs : @storage
@@ -865,13 +690,6 @@ code
                 IF_SOME
                   {
                     DROP;       # bytes : @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                  }; # bool : bytes : @parameter%executeSubs : @storage
-                IF
-                  {
                     DIG 2;      # @storage : bytes : @parameter%executeSubs
                     DUP;        # @storage : @storage : bytes : @parameter%executeSubs
                     DUG 3;      # @storage : bytes : @parameter%executeSubs : @storage
@@ -879,13 +697,6 @@ code
                     IF_SOME
                       {
                         DROP;       # bytes : @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                      }; # bool : bytes : @parameter%executeSubs : @storage
-                    IF
-                      {
                         SWAP;       # @parameter%executeSubs : bytes : @storage
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : @storage
                         DUG 2;      # @parameter%executeSubs : bytes : @parameter%executeSubs : @storage
@@ -897,7 +708,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : nat : bytes : @parameter%executeSubs : @storage
+                            PUSH int 168; # int : nat : bytes : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : nat : bytes : @parameter%executeSubs : @storage
                         COMPARE;    # int : bytes : @parameter%executeSubs : @storage
@@ -924,13 +735,6 @@ code
                 IF_SOME
                   {
                     DROP;       # bytes : @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                  }; # bool : bytes : @parameter%executeSubs : @storage
-                IF
-                  {
                     DIG 2;      # @storage : bytes : @parameter%executeSubs
                     DUP;        # @storage : @storage : bytes : @parameter%executeSubs
                     DUG 3;      # @storage : bytes : @parameter%executeSubs : @storage
@@ -938,13 +742,6 @@ code
                     IF_SOME
                       {
                         DROP;       # bytes : @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                      }; # bool : bytes : @parameter%executeSubs : @storage
-                    IF
-                      {
                         SWAP;       # @parameter%executeSubs : bytes : @storage
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : @storage
                         DUG 2;      # @parameter%executeSubs : bytes : @parameter%executeSubs : @storage
@@ -956,7 +753,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : int : bytes : @parameter%executeSubs : @storage
+                            PUSH int 169; # int : int : bytes : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : int : bytes : @parameter%executeSubs : @storage
                         COMPARE;    # int : bytes : @parameter%executeSubs : @storage
@@ -983,13 +780,6 @@ code
                 IF_SOME
                   {
                     DROP;       # bytes : @parameter%executeSubs : @storage
-                    PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                  }
-                  {
-                    PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                  }; # bool : bytes : @parameter%executeSubs : @storage
-                IF
-                  {
                     DIG 2;      # @storage : bytes : @parameter%executeSubs
                     DUP;        # @storage : @storage : bytes : @parameter%executeSubs
                     DUG 3;      # @storage : bytes : @parameter%executeSubs : @storage
@@ -997,13 +787,6 @@ code
                     IF_SOME
                       {
                         DROP;       # bytes : @parameter%executeSubs : @storage
-                        PUSH bool True; # bool : bytes : @parameter%executeSubs : @storage
-                      }
-                      {
-                        PUSH bool False; # bool : bytes : @parameter%executeSubs : @storage
-                      }; # bool : bytes : @parameter%executeSubs : @storage
-                    IF
-                      {
                         SWAP;       # @parameter%executeSubs : bytes : @storage
                         DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : @storage
                         DUG 2;      # @parameter%executeSubs : bytes : @parameter%executeSubs : @storage
@@ -1015,7 +798,7 @@ code
                         IF_SOME
                           {}
                           {
-                            UNIT;       # unit : nat : bytes : @parameter%executeSubs : @storage
+                            PUSH int 170; # int : nat : bytes : @parameter%executeSubs : @storage
                             FAILWITH;   # FAILED
                           }; # @some : nat : bytes : @parameter%executeSubs : @storage
                         COMPARE;    # int : bytes : @parameter%executeSubs : @storage
@@ -1035,20 +818,18 @@ code
                     FAILWITH;   # FAILED
                   }; # bytes : @parameter%executeSubs : @storage
                 SWAP;       # @parameter%executeSubs : bytes : @storage
-                # element = sp.local("element", sp.pack(sp.record(a = params.tokenAmount, gP = params.gasPrice, n = params.nonce, p = params.publisher, pS = params.periodSeconds, s = params.subscriber, tA = params.tokenAddress)), sp.TBytes) # @parameter%executeSubs : bytes : @storage
+                # element = sp.local("element", sp.pack(sp.record(a = params.tokenAmount, gP = params.gasPrice, n = params.nonce, p = params.publisher, pS = params.periodSeconds, s = params.subscriber, tA = params.tokenAddress))) # @parameter%executeSubs : bytes : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : @storage
-                DUG 2;      # @parameter%executeSubs : bytes : @parameter%executeSubs : @storage
-                CDDAR;      # address : bytes : @parameter%executeSubs : @storage
-                DIG 2;      # @parameter%executeSubs : address : bytes : @storage
+                CDDAR;      # address : @parameter%executeSubs : bytes : @storage
+                SWAP;       # @parameter%executeSubs : address : bytes : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : address : bytes : @storage
                 DUG 3;      # @parameter%executeSubs : address : bytes : @parameter%executeSubs : @storage
                 CAR;        # address : address : bytes : @parameter%executeSubs : @storage
                 PAIR %s %tA; # pair (address %s) (address %tA) : bytes : @parameter%executeSubs : @storage
                 DIG 2;      # @parameter%executeSubs : pair (address %s) (address %tA) : bytes : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : pair (address %s) (address %tA) : bytes : @storage
-                DUG 3;      # @parameter%executeSubs : pair (address %s) (address %tA) : bytes : @parameter%executeSubs : @storage
-                CDDDDAR;    # int : pair (address %s) (address %tA) : bytes : @parameter%executeSubs : @storage
-                DIG 3;      # @parameter%executeSubs : int : pair (address %s) (address %tA) : bytes : @storage
+                CDDDDAR;    # int : @parameter%executeSubs : pair (address %s) (address %tA) : bytes : @storage
+                SWAP;       # @parameter%executeSubs : int : pair (address %s) (address %tA) : bytes : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : int : pair (address %s) (address %tA) : bytes : @storage
                 DUG 4;      # @parameter%executeSubs : int : pair (address %s) (address %tA) : bytes : @parameter%executeSubs : @storage
                 CDAR;       # address : int : pair (address %s) (address %tA) : bytes : @parameter%executeSubs : @storage
@@ -1056,9 +837,8 @@ code
                 PAIR;       # pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @parameter%executeSubs : @storage
                 DIG 2;      # @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @storage
-                DUG 3;      # @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @parameter%executeSubs : @storage
-                CDDDDDDAR;  # nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @parameter%executeSubs : @storage
-                DIG 3;      # @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @storage
+                CDDDDDDAR;  # nat : @parameter%executeSubs : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @storage
+                SWAP;       # @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @storage
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @storage
                 DUG 4;      # @parameter%executeSubs : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @parameter%executeSubs : @storage
                 CDDDDDAR;   # nat : nat : pair (pair (address %p) (int %pS)) (pair (address %s) (address %tA)) : bytes : @parameter%executeSubs : @storage
@@ -1100,10 +880,11 @@ code
                     CAR;        # option nat : pair (option %reqTokenAmount nat) (big_map %times bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready)))) : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     SWAP;       # pair (option %reqTokenAmount nat) (big_map %times bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready)))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     CDR;        # big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
-                    PUSH (option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready)))) (Some (Pair False (Pair "-1" False))); # option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
-                    DIG 6;      # bytes : option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : @parameter%executeSubs
-                    DUP;        # bytes : bytes : option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : @parameter%executeSubs
-                    DUG 7;      # bytes : option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
+                    DIG 5;      # bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : @parameter%executeSubs
+                    DUP;        # bytes : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : @parameter%executeSubs
+                    DUG 6;      # bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
+                    PUSH (option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready)))) (Some (Pair False (Pair "-1" False))); # option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
+                    SWAP;       # bytes : option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     UPDATE;     # big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     SWAP;       # option nat : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     PAIR;       # pair (option nat) (big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready)))) : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
@@ -1141,11 +922,9 @@ code
                 DUG 2;      # bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 GET;        # option (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 IF_SOME
+                  {}
                   {
-                    # of_some: set_in_top-any # @some : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
-                  }
-                  {
-                    PUSH string "set_in_top-any"; # string : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
+                    PUSH int 199; # int : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     FAILWITH;   # FAILED
                   }; # @some : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 DUP;        # @some : @some : bytes : big_map bytes (pair (bool %active) (pair (timestamp %nextValidTimeStamp) (bool %ready))) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
@@ -1173,9 +952,8 @@ code
                 DUP;        # bytes : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DIG 3;      # @parameter%executeSubs : bytes : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DUG 4;      # @parameter%executeSubs : bytes : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                CDDDDDDDAR; # signature : bytes : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DIG 4;      # @parameter%executeSubs : signature : bytes : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                CDDDDDDDAR; # signature : @parameter%executeSubs : bytes : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                SWAP;       # @parameter%executeSubs : signature : bytes : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : signature : bytes : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUG 5;      # @parameter%executeSubs : signature : bytes : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 CDDDDDDDDR; # key : signature : bytes : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1189,9 +967,8 @@ code
                 # sp.verify(params.subscriber != params.publisher) # bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DIG 2;      # @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DUG 3;      # @parameter%executeSubs : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                CDAR;       # address : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DIG 3;      # @parameter%executeSubs : address : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                CDAR;       # address : @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                SWAP;       # @parameter%executeSubs : address : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : address : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUG 4;      # @parameter%executeSubs : address : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 CAR;        # address : address : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1217,7 +994,7 @@ code
                     # of_some: Get-item:202 # @some : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                   }
                   {
-                    PUSH string "Get-item:202"; # string : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                    PUSH int 202; # int : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                     FAILWITH;   # FAILED
                   }; # @some : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 CDAR;       # timestamp : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1233,9 +1010,8 @@ code
                 # sp.verify(self.data.allowance >= (params.tokenAmount + params.gasPrice)) # bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DIG 2;      # @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DUG 3;      # @parameter%executeSubs : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                CDDDDDAR;   # nat : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DIG 3;      # @parameter%executeSubs : nat : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                CDDDDDAR;   # nat : @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                SWAP;       # @parameter%executeSubs : nat : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : nat : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUG 4;      # @parameter%executeSubs : nat : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 CDDDAR;     # nat : nat : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1255,9 +1031,8 @@ code
                 # sp.verify(self.data.balance >= (params.tokenAmount + params.gasPrice)) # bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DIG 2;      # @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DUG 3;      # @parameter%executeSubs : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                CDDDDDAR;   # nat : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DIG 3;      # @parameter%executeSubs : nat : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                CDDDDDAR;   # nat : @parameter%executeSubs : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                SWAP;       # @parameter%executeSubs : nat : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : nat : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUG 4;      # @parameter%executeSubs : nat : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 CDDDAR;     # nat : nat : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1300,11 +1075,9 @@ code
                 DUG 2;      # bytes : big_map bytes (pair bool (pair timestamp bool)) : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 GET;        # option (pair bool (pair timestamp bool)) : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 IF_SOME
+                  {}
                   {
-                    # of_some: set_in_top-any # @some : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
-                  }
-                  {
-                    PUSH string "set_in_top-any"; # string : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
+                    PUSH int 205; # int : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     FAILWITH;   # FAILED
                   }; # @some : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 DUP;        # @some : @some : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
@@ -1343,7 +1116,7 @@ code
                     # of_some: Get-item:243 # @some : bool : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                   }
                   {
-                    PUSH string "Get-item:243"; # string : bool : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                    PUSH int 243; # int : bool : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                     FAILWITH;   # FAILED
                   }; # @some : bool : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 CDDR;       # bool : bool : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1381,11 +1154,9 @@ code
                 DUG 2;      # bytes : big_map bytes (pair bool (pair timestamp bool)) : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 GET;        # option (pair bool (pair timestamp bool)) : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 IF_SOME
+                  {}
                   {
-                    # of_some: set_in_top-any # @some : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
-                  }
-                  {
-                    PUSH string "set_in_top-any"; # string : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
+                    PUSH int 244; # int : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                     FAILWITH;   # FAILED
                   }; # @some : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
                 DUP;        # @some : @some : bytes : big_map bytes (pair bool (pair timestamp bool)) : option nat : option address : pair (option %reqPeriodSeconds int) (option %reqToAddress address) : pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat))) : bytes : bytes : @parameter%executeSubs
@@ -1438,11 +1209,12 @@ code
                     CDR;        # pair (address %owner) (option %reqGasPrice nat) : pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                     SWAP;       # pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)) : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                     CAR;        # map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
-                    PUSH (option nat) (Some 0); # option nat : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
-                    DIG 7;      # @parameter%executeSubs : option nat : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes
-                    DUP;        # @parameter%executeSubs : @parameter%executeSubs : option nat : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes
-                    DUG 8;      # @parameter%executeSubs : option nat : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
-                    CAR;        # address : option nat : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
+                    DIG 6;      # @parameter%executeSubs : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes
+                    DUP;        # @parameter%executeSubs : @parameter%executeSubs : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes
+                    DUG 7;      # @parameter%executeSubs : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
+                    CAR;        # address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
+                    PUSH (option nat) (Some 0); # option nat : address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
+                    SWAP;       # address : option nat : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                     UPDATE;     # map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                     PAIR;       # pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                     SWAP;       # pair (nat %allowance) (nat %balance) : pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
@@ -1462,10 +1234,10 @@ code
                 GET;        # option nat : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 IF_SOME
                   {
-                    # of_some: Get-item:222 # @some : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                    # of_some: Get-item:246 # @some : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                   }
                   {
-                    PUSH string "Get-item:222"; # string : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                    PUSH int 246; # int : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                     FAILWITH;   # FAILED
                   }; # @some : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DIG 3;      # @parameter%executeSubs : @some : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1505,10 +1277,9 @@ code
                         DROP;       # address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                         DIG 8;      # pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool)))))) : address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                         DROP;       # address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
-                        # of_some: set_in_top-any # address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                       }
                       {
-                        PUSH string "set_in_top-any"; # string : address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                        PUSH int 247; # int : address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                         FAILWITH;   # FAILED
                       }; # address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes : @parameter%executeSubs
                     DIG 7;      # @parameter%executeSubs : address : map address nat : pair (address %owner) (option %reqGasPrice nat) : pair (nat %allowance) (nat %balance) : pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))) : bytes : bytes
@@ -1535,15 +1306,14 @@ code
                 IF_SOME
                   {}
                   {
-                    UNIT;       # unit : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                    PUSH int 249; # int : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                     FAILWITH;   # FAILED
                   }; # @some : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 PUSH mutez 0; # mutez : @some : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DIG 5;      # @parameter%executeSubs : mutez : @some : list operation : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : mutez : @some : list operation : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DUG 6;      # @parameter%executeSubs : mutez : @some : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                CDDDAR;     # nat : mutez : @some : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
-                DIG 6;      # @parameter%executeSubs : nat : mutez : @some : list operation : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                CDDDAR;     # nat : @parameter%executeSubs : mutez : @some : list operation : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                SWAP;       # @parameter%executeSubs : nat : mutez : @some : list operation : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUP;        # @parameter%executeSubs : @parameter%executeSubs : nat : mutez : @some : list operation : bytes : bytes : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 DUG 7;      # @parameter%executeSubs : nat : mutez : @some : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                 CDAR;       # address : nat : mutez : @some : list operation : bytes : bytes : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1578,7 +1348,7 @@ code
                     IF_SOME
                       {}
                       {
-                        UNIT;       # unit : list operation : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
+                        PUSH int 254; # int : list operation : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                         FAILWITH;   # FAILED
                       }; # @some : list operation : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
                     PUSH mutez 0; # mutez : @some : list operation : @parameter%executeSubs : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
@@ -1614,15 +1384,14 @@ code
                 IF_SOME
                   {}
                   {
-                    UNIT;       # unit : list operation : @parameter%updateAllowance : @storage
+                    PUSH int 151; # int : list operation : @parameter%updateAllowance : @storage
                     FAILWITH;   # FAILED
                   }; # @some : list operation : @parameter%updateAllowance : @storage
                 PUSH mutez 0; # mutez : @some : list operation : @parameter%updateAllowance : @storage
                 DIG 3;      # @parameter%updateAllowance : mutez : @some : list operation : @storage
                 DUP;        # @parameter%updateAllowance : @parameter%updateAllowance : mutez : @some : list operation : @storage
-                DUG 4;      # @parameter%updateAllowance : mutez : @some : list operation : @parameter%updateAllowance : @storage
-                CAR;        # address : mutez : @some : list operation : @parameter%updateAllowance : @storage
-                DIG 4;      # @parameter%updateAllowance : address : mutez : @some : list operation : @storage
+                CAR;        # address : @parameter%updateAllowance : mutez : @some : list operation : @storage
+                SWAP;       # @parameter%updateAllowance : address : mutez : @some : list operation : @storage
                 CDAR;       # address : address : mutez : @some : list operation : @storage
                 PAIR %owner %spender; # pair (address %owner) (address %spender) : mutez : @some : list operation : @storage
                 SELF;       # contract (or (or (pair %cancelSub (address %subscriber) (pair (address %publisher) (pair (address %tokenAddress) (pair (nat %tokenAmount) (pair (int %periodSeconds) (pair (nat %gasPrice) (pair (nat %nonce) (pair (signature %userSignature) (key %subs_pub_key))))))))) (or (pair %executeSubs (address %subscriber) (pair (address %publisher) (pair (address %tokenAddress) (pair (nat %tokenAmount) (pair (int %periodSeconds) (pair (nat %gasPrice) (pair (nat %nonce) (pair (signature %userSignature) (key %subs_pub_key))))))))) (pair %updateAllowance (address %spender) (pair (address %subscriber) (address %tokenAddress))))) (or (pair %updateBalance (address %subscriber) (address %tokenAddress)) (or (nat %viewAllowance) (nat %viewBalance)))) : pair (address %owner) (address %spender) : mutez : @some : list operation : @storage
@@ -1646,7 +1415,7 @@ code
             IF_SOME
               {}
               {
-                UNIT;       # unit : list operation : @parameter%updateBalance : @storage
+                PUSH int 137; # int : list operation : @parameter%updateBalance : @storage
                 FAILWITH;   # FAILED
               }; # @some : list operation : @parameter%updateBalance : @storage
             PUSH mutez 0; # mutez : @some : list operation : @parameter%updateBalance : @storage
@@ -1705,4 +1474,4 @@ code
         CONS;       # list operation : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
       }; # list operation : pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool))))))
     PAIR;       # pair (list operation) (pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool)))))))
-  } # pair (list operation) (pair (pair (pair (nat %allowance) (nat %balance)) (pair (map %extraNonce address nat) (pair (address %owner) (option %reqGasPrice nat)))) (pair (pair (option %reqPeriodSeconds int) (option %reqToAddress address)) (pair (option address) (pair (option nat) (big_map bytes (pair bool (pair timestamp bool)))))))
+  };

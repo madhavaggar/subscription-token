@@ -5,7 +5,7 @@ import eth from '../ethereum.png';
 import Scaler from './scaler.js';
 import Blockies from 'react-blockies';
 import { TezosToolkit } from '@taquito/taquito';
-import { ThanosWallet } from "@thanos-wallet/dapp";
+import { TezBridgeWallet } from '@taquito/tezbridge-wallet';
 
 let interval;
 let defaultConfig = {};
@@ -94,131 +94,139 @@ class Metamask extends Component {
 
     checkMetamask = async () => {
         if (this.state.config.DEBUG) console.log('METAMASK - checking state...');
-            if (!this.state.hasRequestedAccess) { // Prevent multiple prompts
-                if (this.state.config.DEBUG) console.log('THANOS - requesting access from user...');
-                this.setState({ hasRequestedAccess: true }, () => {
-                    this.props.onUpdate(this.state);
-                });
-                try {
-                    if (await ThanosWallet.isAvailable()) {
-                        var wallet = new ThanosWallet("TezQF");
-                        await wallet.connect("carthagenet",{forcePermission:true});
-                        const Tezos = new TezosToolkit();
-                        Tezos.setProvider({ wallet });
-                        var accountPkh = await Tezos.wallet.pkh();
-    
-                        const balance = await Tezos.tz.getBalance(accountPkh);
-                        let tzstats = 'https://carthagenet.tzstats.com/';
-                        if (this.state.config.DEBUG)
-                            console.log('Thanos - TzStats', balance);
-                        if (
-                            this.state.status != 'ready' ||
-                            this.state.balance != balance
-                        ) {
-                            let update = {
-                                status: 'ready',
-                                balance: balance,
-                                Tezos: Tezos,
-                                tzstats: tzstats,
-                                account: accountPkh
-                            };
-                            this.setState(update, () => {
-                                this.props.onUpdate(this.state);
-                            });
-                        }
-    
+        if (!this.state.hasRequestedAccess) { // Prevent multiple prompts
+            if (this.state.config.DEBUG) console.log('THANOS - requesting access from user...');
+            this.setState({ hasRequestedAccess: true }, () => {
+                this.props.onUpdate(this.state);
+            });
+            try {
+                const Tezos = new TezosToolkit();
+                Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
+                
+                const wallet = await new TezBridgeWallet();
+                await wallet.setHost("https://api.tez.ie/rpc/carthagenet")
+                await Tezos.setWalletProvider(wallet);
+                var accountPkh = await wallet.getPKH();
+                
+                console.log("Checking why its zero",Tezos.rpc)
+
+                var balance = await Tezos.tz.getBalance(accountPkh);
+                if (balance) {
+                    if (typeof balance == 'string') {
+                        balance = parseFloat(balance) / 1000000;
+                    } else {
+                        balance = balance.toNumber() / 1000000;
                     }
-                } catch (e) {
-                    console.log(e);
                 }
+                let tzstats = 'https://carthagenet.tzstats.com/';
+                if (this.state.config.DEBUG)
+                    console.log('Thanos - TzStats', balance);
+                if (
+                    this.state.status != 'ready' ||
+                    this.state.balance != balance
+                ) {
+                    let update = {
+                        status: 'ready',
+                        balance: balance,
+                        Tezos: Tezos,
+                        tzstats: tzstats,
+                        account: accountPkh
+                    };
+                    this.setState(update, () => {
+                        this.props.onUpdate(this.state);
+                    });
+                }
+            } catch (e) {
+                console.log(e);
             }
         }
+    }
 
 
     render() {
-            let metamask = 'loading.';
-            if (this.props.config.hide) {
-                metamask = [];
+        let metamask = 'loading.';
+        if (this.props.config.hide) {
+            metamask = [];
+        }
+        else if (this.state.status == 'loading') {
+            metamask = (
+                <a target="_blank" href="https://thanoswallet.com/">
+                    <span style={this.state.config.textStyle}>loading...</span>
+                    <img
+                        style={{ maxHeight: 45, padding: 5, verticalAlign: 'middle' }}
+                        src={logo}
+                    />
+                </a>
+            );
+        } else if (this.state.status == 'ready') {
+            let requiredNetworkText = '';
+            for (let n in this.state.config.requiredNetwork) {
+                if (this.state.config.requiredNetwork[n] != 'unknown' && this.state.config.requiredNetwork[n] != '') {
+                    if (requiredNetworkText != '') requiredNetworkText += 'or ';
+                    requiredNetworkText += this.state.config.requiredNetwork[n] + ' ';
+                }
             }
-            else if (this.state.status == 'loading') {
-                metamask = (
-                    <a target="_blank" href="https://thanoswallet.com/">
-                        <span style={this.state.config.textStyle}>loading...</span>
-                        <img
-                            style={{ maxHeight: 45, padding: 5, verticalAlign: 'middle' }}
-                            src={logo}
-                        />
-                    </a>
-                );
-            } else if (this.state.status == 'ready') {
-                let requiredNetworkText = '';
-                for (let n in this.state.config.requiredNetwork) {
-                    if (this.state.config.requiredNetwork[n] != 'unknown' && this.state.config.requiredNetwork[n] != '') {
-                        if (requiredNetworkText != '') requiredNetworkText += 'or ';
-                        requiredNetworkText += this.state.config.requiredNetwork[n] + ' ';
-                    }
-                }
-                let balance = '';
-                if (this.state.config.showBalance) {
-                    balance =
-                        Math.round(this.state.balance * this.state.config.ETHPRECISION) /
-                        this.state.config.ETHPRECISION;
-                }
+            let balance = '';
+            if (this.state.config.showBalance) {
+                balance =
+                Math.round(this.state.balance * this.state.config.ETHPRECISION) /
+                this.state.config.ETHPRECISION;
+            }
 
-                const ln = this.state.account.length;
-                let displayName = `${this.state.account.slice(0, 7)}...${this.state.account.slice(ln - 4, ln)}`;
+            const ln = this.state.account.length;
+            let displayName = `${this.state.account.slice(0, 7)}...${this.state.account.slice(ln - 4, ln)}`;
 
-                metamask = (
-                    <div style={this.state.config.boxStyle}>
-                        <a
-                            target="_blank"
-                            href={this.state.tzstats + this.state.account}
-                        >
-                            <div>
-                                <span style={this.state.config.textStyle}>{displayName}</span>
-                            </div>
-                            <div>
-                                <span style={this.state.config.textStyle}>
-                                    <img
-                                        style={{
-                                            maxHeight: 24,
-                                            padding: 2,
-                                            verticalAlign: 'middle',
-                                            marginTop: -4
-                                        }}
-                                        src={eth}
-                                    />
-                                    {balance}
-                                </span>
-                            </div>
-                            <div
-                                style={{
-                                    position: 'absolute',
-                                    right: this.state.config.blockieStyle.right,
-                                    top: this.state.config.blockieStyle.top
-                                }}
-                                onClick={this.clickBlockie}
-                            >
-                                <Blockies
-                                    seed={this.state.account}
-                                    scale={this.state.config.blockieStyle.size}
+            metamask = (
+                <div style={this.state.config.boxStyle}>
+                    <a
+                        target="_blank"
+                        href={this.state.tzstats + this.state.account}
+                    >
+                        <div>
+                            <span style={this.state.config.textStyle}>{displayName}</span>
+                        </div>
+                        <div>
+                            <span style={this.state.config.textStyle}>
+                                <img
+                                    style={{
+                                        maxHeight: 24,
+                                        padding: 2,
+                                        verticalAlign: 'middle',
+                                        marginTop: -4
+                                    }}
+                                    src={eth}
                                 />
-                            </div>
-                        </a>
-                    </div>
-                );
-            } else {
-                metamask = 'error unknown state: ' + this.state.status;
-            }
-
-            return (
-                <div style={this.state.config.outerBoxStyle}>
-                    <Scaler config={{ origin: 'top right', adjustedZoom: 1.5 }}>
-                        {metamask}
-                    </Scaler>
+                                {balance}
+                            </span>
+                        </div>
+                        <div
+                            style={{
+                                position: 'absolute',
+                                right: this.state.config.blockieStyle.right,
+                                top: this.state.config.blockieStyle.top
+                            }}
+                            onClick={this.clickBlockie}
+                        >
+                            <Blockies
+                                seed={this.state.account}
+                                scale={this.state.config.blockieStyle.size}
+                            />
+                        </div>
+                    </a>
                 </div>
             );
-
+        } else {
+            metamask = 'error unknown state: ' + this.state.status;
         }
+
+        return (
+            <div style={this.state.config.outerBoxStyle}>
+                <Scaler config={{ origin: 'top right', adjustedZoom: 1.5 }}>
+                    {metamask}
+                </Scaler>
+            </div>
+        );
+
     }
-    export default Metamask;
+}
+export default Metamask;

@@ -5,6 +5,7 @@ import Scaler from '../dapparatus/scaler'
 import axios from 'axios'
 import Particles from '../particles.png';
 import Loader from "../loader.gif"
+import { TezBridgeSigner } from "@taquito/tezbridge-signer";
 
 let pollInterval
 let pollTime = 1777
@@ -18,7 +19,7 @@ class SubscriberApprove extends Component {
       loading:false
     };
   }
-  componentDidMount(){
+  async componentDidMount(){
     axios.get(this.props.backendUrl+"subscription/"+this.props.subscription, { crossdomain: true })
     .catch((err)=>{
       console.log("Error getting subscription",err)
@@ -26,29 +27,48 @@ class SubscriberApprove extends Component {
     .then(async (response)=>{
       console.log("subscription:",response.data)
       this.setState({subscription:response.data})
+      this.props.Tezos.setProvider({signer: new TezBridgeSigner()})
       //let subscriptionContract = this.props.customContractLoader("Subscription",this.props.contract)
-      let tokenContract = this.props.customContractLoader("WasteToken",response.data.parts[2])
+      let tokenContract = await this.props.customContractLoader("WasteToken",response.data.parts[2])
+      console.log("TokenContract",tokenContract);
       let foundToken
       for(let i = 0; i < this.props.coins.length; i++){
-        if(tokenContract._address.toLowerCase() == this.props.coins[i].address.toLowerCase()){
+        if(tokenContract._address == this.props.coins[i].address){
           foundToken = this.props.coins[i]
         }
       }
       this.setState({token:foundToken,tokenContract:tokenContract})
     })
     pollInterval = setInterval(this.load.bind(this),pollTime)
-    this.load()
+    await this.load()
   }
   componentWillUnmount(){
     clearInterval(pollInterval)
   }
   async load(){
     if(this.state.tokenContract){
-      let value1 = await this.state.tokenContract._contract.storage()['balances'].get(this.props.account)
-      let value2 = await this.state.tokenContract._contract.storage()['balances'].get(this.state.subscription.parts[0])
+      let storage = await this.state.tokenContract._contract.storage()
+      console.log("STORAGE",storage)
+      let value1 = await storage['balances'].get(this.props.account)
+      let balances
+      if(value1)
+        balances = value1['balance']
+      if(!balances){
+        balances = 0
+      }
+      console.log("BALANCES",balances)
+      let value2 = await storage['balances'].get(this.state.subscription.parts[0])
+      let approvals
+      if(value2){
+        approvals = await value2['approvals'].get(this.state.subscription.subscriptionContract)
+      }
+      if(!approvals){
+        approvals=0
+      }
+      console.log("APPROVAL",approvals)
       this.setState({
-        balance: value1[Object.keys(value1)[1]],
-        approved: value2[Object.keys(value2)[0]].get(this.state.subscription.subscriptionContract)
+        balance: balances.toNumber(),
+        approved: approvals.toNumber()
       })
     }
   }
@@ -114,10 +134,10 @@ class SubscriberApprove extends Component {
         <div>
           From <Address
             {...this.props}
-            address={from.toLowerCase()}
+            address={from}
           /> to <Address
             {...this.props}
-            address={to.toLowerCase()}
+            address={to}
           />
         </div>
         <div>
@@ -137,7 +157,7 @@ class SubscriberApprove extends Component {
               let amount = ""+(this.state.approve)
               let address = ""+(this.state.subscription.subscriptionContract)
               this.setState({loading:true})
-              this.state.tokenContract.approve({address,amount}).send()
+              this.state.tokenContract.approve(address,amount).send()
               .then(op=>{
                 return op.confirmation().then(() => op.hash);
               })

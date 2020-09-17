@@ -23,18 +23,18 @@ async function main() {
     const tokenContractAddress = tokenContract.address;
     console.log("Deployed WasteToken Contract at:", tokenContractAddress);
 
-    /*    console.log("Compiling Subscription Contract");
+    console.log("Compiling Subscription Contract");
     await compileContract(
       "main",
       "Subscription",
-      `(sp.address('${admin.publicKeyHash}'))`
+      `(sp.address('${admin.publicKeyHash}'),sp.none,sp.none,sp.none,sp.none,sp.none)`
     );
     
     console.log("Deploying Subscription Contract");
     const subscriptionContract = await deployContract("main", "Subscription", "admin");
     const subscriptionContractAddress = subscriptionContract.address;
     console.log("Deployed Subscription Contract at:", subscriptionContractAddress);
-    */
+    
 
     console.log("Updating config file");
     // Update the contract addresses
@@ -42,6 +42,7 @@ async function main() {
       fs.readFileSync("./contractsConfig.json").toString()
     );
     configFile.WasteTokenContractAddress = tokenContract.address;
+    configFile.SubscriptionContractAddress = subscriptionContract.address;
     fs.writeFile(
       "./contractsConfig.json",
       JSON.stringify(configFile, null, 2),
@@ -49,15 +50,16 @@ async function main() {
     );
     
     var srcfile = JSON.parse(
-      fs.readFileSync("../../src/contracts/config.jsons").toString()
+      fs.readFileSync("./src/contracts/config.json").toString()
     );
 
     srcfile.WasteTokenContractAddress = tokenContract.address;
+    srcfile.SubscriptionContractAddress = subscriptionContract.address;
     //configFile.SubscriptionContractAddress = subscriptionContract.address;
     
     fs.writeFile(
-      "./contractsConfig.json",
-      JSON.stringify(srcFile, null, 2),
+      "./src/contracts/config.json",
+      JSON.stringify(srcfile, null, 2),
       () => {}
     );
     console.log("Updated config file [COMPLETE]");

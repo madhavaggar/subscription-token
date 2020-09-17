@@ -6,8 +6,9 @@ async function compileContract(filename, className, params) {
   return new Promise((resolve, reject) => {
     const filePath = config.location + filename + ".py";
     const buildDirectory =
-      config.buildDirectory + filename + "/" + className + "/";
+      config.buildDirectory + filename + "/" + className;
     const classAndParams = `"${className + params}"`;
+    console.log("Successfull calling upto here",admin)
 
     exec(
       `./utils/smartpy-cli/SmartPy.sh compile ./${filePath} ${classAndParams} ./${buildDirectory}`,

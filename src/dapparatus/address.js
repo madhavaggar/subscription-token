@@ -39,16 +39,6 @@ class Address extends Component {
         clearInterval(interval);
     }
     load = async () => {
-        window.web3.eth.getBalance(this.props.address, (err, balance, e) => {
-            if (balance) {
-                if (typeof balance == 'string') {
-                    balance = parseFloat(balance) / 1000000000000000000;
-                } else {
-                    balance = balance.toNumber() / 1000000000000000000;
-                }
-                this.setState({ balance: balance });
-            }
-        });
         try {
             let Tezos = new TezosToolkit();
             Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
@@ -95,7 +85,7 @@ class Address extends Component {
             blockie = (
                 <Blockie
                     config={{ size: this.state.config.blockieSize }}
-                    address={this.props.address.toLowerCase()}
+                    address={this.props.address}
                 />
             );
         }
@@ -110,7 +100,7 @@ class Address extends Component {
         return (
             <a
                 target="_blank"
-                href={this.props.tzstats + 'address/' + this.props.address}
+                href={this.props.tzstats + this.props.address}
             >
                 {blockie}
                 {nameString}

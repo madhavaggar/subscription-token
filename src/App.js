@@ -15,7 +15,7 @@ import SubscriberApprove from './components/subscriberApprove'
 import Coins from './coins.js'
 import axios from 'axios'
 
-let backendUrl = "http://localhost:3000/"
+let backendUrl = "http://localhost:10003/"
 if(window.location.href.indexOf("tokensubscription.com")>=0)
 {
   backendUrl = "https://relay.tokensubscription.com/"
@@ -32,7 +32,10 @@ class App extends Component {
       contract = path
       console.log("Subscriber Enters using contract",contract)
     }else if(path.startsWith('HASH')){ // length with hash 
+      console.log("Subcription Hash with HASH",path)
+      path = path.substring(4)
       subscription = path
+      console.log("Subcription Hash",subscription)
     }else{
       console.log("PATH LENGTH UNKNWON",path,path.length)
     }
@@ -162,7 +165,7 @@ class App extends Component {
   }
 
   render() {
-    let {Tezos,account,contracts,gwei,block,tzstats,mode,deployedAddress} = this.state
+    let {Tezos,account,contracts,tzstats,mode,deployedAddress} = this.state
     let connectedDisplay = []
     let contractsDisplay = []
     let noTezosDisplay = ""

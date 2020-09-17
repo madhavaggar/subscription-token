@@ -1,7 +1,8 @@
 module.exports = {
-  publicKey: "edpkuZHZjYFPFR713NsH41i946z8PiZ4Ho7F4KbvdMiNgKA7XHrqKL",
-  privateKey:
-    "edskRevMtNnc1W5jkPAKJDhC2oipaYuogxR3fZrsXhtZUsQrjibcU4WpnuS6WinNZ4WT8zNPpeSJHuUoEB83wwwuk9fkPv8z65",
-  publicKeyHash: "tz1NN5QooJWkW44KFfrXqLRaxEa5Wxw3f9FF",
-  seed: "",
-};
+    publicKey: "edpkttiCW3ZUvdebmw56op5wwDq5YaLH1AhwaTx6iym4AfWaD7JEAj",
+    privateKey:
+      "edskSAGn77386zCQMGnV9SHeWNvg8RUrjEek4VW18vL7umReB7j7YxagQnS3d3FDkLchn2dJoQE1iLi9ZaSq6UtoNpKxQ2mpcM",
+    publicKeyHash: "tz1iW8VsjiskuidR5EwSv7JUkttVZHDgKtfi",
+    seed: "",
+  };
+  

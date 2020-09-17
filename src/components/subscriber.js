@@ -6,7 +6,8 @@ import axios from 'axios'
 import Loader from '../loader.gif';
 import Particles from './particles.js';
 import { Dropdown } from 'semantic-ui-react'
-import { InMemorySigner } from '@taquito/signer'
+import { TezBridgeSigner } from "@taquito/tezbridge-signer";
+
 
 let monthOptions = [
   { key: 'months', value: 'months', text: 'Month(s)' },
@@ -25,7 +26,7 @@ class Subscriber extends Component {
       tokenAmount: 1000,
       timeAmount: 1,
       timeType: "months",
-      tokenAddress: "KT1FKDqbqQ6E25ze5XXTbRSzMKhu11neuR7y",
+      tokenAddress: "KT1Xu7Vp9aXyjHE25KDLbbhZFPiGcB2YjY2a",
       gasPrice: 25,
       tokenName: "DAI",
     };
@@ -335,9 +336,22 @@ class Subscriber extends Component {
 
       const subscriptionHash = packedData.data.packed;
       */
-      var subscriptionHash = packed
-      subscriptionHash = 'HASH' + subscriptionHash
 
+
+      var subscriptionHash = packed
+      console.log("subscriptionHash",subscriptionHash)
+
+      var signer = new TezBridgeSigner();
+      const _address = await window.tezbridge.request({ method: "get_source" });
+
+      let signature
+      if(account == _address){
+        signature = await signer.sign(subscriptionHash)
+        console.log("signature",signature.prefixSig)
+      }
+      else{
+        throw "Accounts don't Match"
+      }
 
       console.log("subscriptionHash", subscriptionHash)
 
@@ -345,6 +359,7 @@ class Subscriber extends Component {
         subscriptionContract: subscriptionContract._address,
         parts: parts,
         subscriptionHash: subscriptionHash,
+        signature: signature.prefixSig,
       }
 
       console.log("postData", postData)
@@ -354,7 +369,7 @@ class Subscriber extends Component {
         }
       }).then((response) => {
         console.log("TX RESULT", response.data.subscriptionHash)
-        window.location = "/" + response.data.subscriptionHash
+        window.location = "/HASH" + response.data.subscriptionHash
       })
         .catch((error) => {
           console.log(error);
@@ -392,7 +407,7 @@ class Subscriber extends Component {
         console.log("using", requiredTokenAddress, "search through", this.props.coins)
         for (let c in this.props.coins) {
           console.log("CHECKING", this.props.coins[c])
-          if (this.props.coins[c] && this.props.coins[c].address && this.props.coins[c].address.toLowerCase() == requiredTokenAddress.toLowerCase()) {
+          if (this.props.coins[c] && this.props.coins[c].address && this.props.coins[c].address == requiredTokenAddress) {
             console.log("FOUND!!!!!!!!")
             requiredTokenName = this.props.coins[c].name
           }
@@ -493,7 +508,7 @@ class Subscriber extends Component {
               <div className="form-field">
                 <label>To Address:</label>
                 <Blockie
-                  address={toAddress.toLowerCase()}
+                  address={toAddress}
                   config={{ size: 3 }}
                 />
                 <input type="text" style={{ width: '415px' }} name="toAddress" value={toAddress} onChange={this.handleInput.bind(this)} />
@@ -557,9 +572,9 @@ class Subscriber extends Component {
               <div style={{ marginTop: 110 }} className="form-field">
                 <label>To Address:</label>
                 <Blockie
-                  address={toAddress.toLowerCase()}
+                  address={toAddress}
                   config={{ size: 3 }}
-                /> {toAddress.toLowerCase()}
+                /> {toAddress}
               </div>
               <div className="form-field">
                 <label>Token:</label> {tokenAddress}

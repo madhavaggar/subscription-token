@@ -20,7 +20,7 @@ class Blockie extends Component {
 
     let address = this.props.address
     if(address && typeof address == "string"){
-      address = address.toLowerCase()
+      address = address
     }else{
       address = null
     }

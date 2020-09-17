@@ -40,7 +40,7 @@ class ContractLoader extends Component {
 
       this.props.Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' })
 
-      let contract = await this.props.Tezos.wallet.at(contractObject.address);
+      let contract = await this.props.Tezos.contract.at(contractObject.address);
 
       resultingContract = contract.methods
       resultingContract._address = contractObject.address

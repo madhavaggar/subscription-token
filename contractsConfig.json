@@ -4,7 +4,7 @@
   "buildDirectory": "contracts/build/",
   "testBuildDirectory": "contracts/tests/build/",
   "deployConfig": {
-    "node": "https://carthagenet.smartpy.io",
+    "node": "https://testnet.tezster.tech",
     "key": "admin",
     "amount": 1,
     "delegateAddress": "",
@@ -14,8 +14,8 @@
     "gasLimit": 1000000
   },
   "interactionConfig": {
-    "node": "https://carthagenet.smartpy.io"
+    "node": "https://testnet.tezster.tech"
   },
-  "WasteTokenContractAddress": "KT1Vr3DVGdgFH59XdLCVjEtcN4VVHTfAtC8V",
-  "SubscriptionContractAddress": "KT1Hxhq1cAzdjPZ39GEk2r7SAGW2wZ2GbJyN"
+  "WasteTokenContractAddress": "KT1Vgh28qgoZfs4eUiYLMpUGssTQdhRnpxJf",
+  "SubscriptionContractAddress": "KT1VCJ7pk7qmT611FddsAbiHD7g9yRnQdLXZ"
 }

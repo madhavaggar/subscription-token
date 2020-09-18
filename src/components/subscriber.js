@@ -130,111 +130,66 @@ class Subscriber extends Component {
     ]
     /*web3.utils.padLeft("0x"+nonce,64),*/
     console.log("PARTS", parts)
+    console.log("Checking", tokenAmount.toString())
     try {
 
-      const data = {
-        prim: "Left",
+      const data =
+      {
+        prim: "Pair",
         args: [
+          { 
+            prim:"Pair",
+            args:[
+              {string: account },
+              {
+                prim: "Pair",
+                args: [{string: toAddress },{ string: tokenAddress }], 
+              },
+            ],
+          },
           {
-            prim: "Right",
+            prim: "Pair",
             args: [
               {
-                prim: "Left",
-                args: [
-                  {
-                    prim: "Pair",
-                    args: [
-                      { "string": account },
-                      {
-                        prim: "Pair",
-                        args: [
-                          { "string": toAddress },
-                          {
-                            prim: "Pair",
-                            args: [
-                              { "string": tokenAddress },
-                              {
-                                prim: "Pair",
-                                args: [
-                                  { "int": realTokenAmount.toString() },
-                                  {
-                                    prim: "Pair",
-                                    args: [
-                                      { "int": periodSeconds.toString() },
-                                      {
-                                        prim: "Pair",
-                                        args: [{ "int": realGasPrice.toString() }, { "int": nonce.toString() }],
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                ],
+                prim: "Pair",
+                args: [{int: realTokenAmount.toString() },{int: periodSeconds.toString() }],
               },
+              {
+                prim: "Pair",
+                args: [{ int: realGasPrice.toString() },{int: nonce.toString()}],
+              },         
             ],
           },
         ],
       };
 
-
-
       const type =
       {
-        prim: "or",
+        prim: "pair",
         args: [
-          {
-            prim: "or",
+          { 
+            prim: "pair",
             args: [
-              { prim: "nat" },
-              {
-                prim: "or",
-                args: [
-                  {
-                    prim: "pair",
-                    args: [
-                      { prim: "address" },
-                      {
-                        prim: "pair",
-                        args: [
-                          { prim: "address" },
-                          {
-                            prim: "pair",
-                            args: [
-                              { prim: "address" },
-                              {
-                                prim: "pair",
-                                args: [
-                                  { prim: "nat" },
-                                  {
-                                    prim: "pair",
-                                    args: [
-                                      { prim: "nat" },
-                                      {
-                                        prim: "pair",
-                                        args: [{ prim: "nat" }, { prim: "nat" }],
-                                      },
-                                    ],
-                                  },
-                                ],
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    ],
-                  },
-                  { prim: "nat" }
-                ],
-              }
+              { prim: "address" },
+              { 
+                prim: "pair",
+                args: [{prim: "address"},{prim: "address"}],
+              },
             ],
           },
-          { prim: "nat" }
+          {
+            prim: "pair",
+            args: [
+              { 
+                prim: "pair",
+                args: [ {prim: "nat"},{prim: "int"} ],
+              },
+              {
+                prim: "pair",
+                args: [ { prim: "nat" },{prim: "nat"}],
+              },
+            ],
+          },
         ],
       };
 
@@ -339,17 +294,17 @@ class Subscriber extends Component {
 
 
       var subscriptionHash = packed
-      console.log("subscriptionHash",subscriptionHash)
+      console.log("subscriptionHash", subscriptionHash)
 
       var signer = new TezBridgeSigner();
       const _address = await window.tezbridge.request({ method: "get_source" });
 
       let signature
-      if(account == _address){
+      if (account == _address) {
         signature = await signer.sign(subscriptionHash)
-        console.log("signature",signature.prefixSig)
+        console.log("signature", signature.prefixSig)
       }
-      else{
+      else {
         throw "Accounts don't Match"
       }
 

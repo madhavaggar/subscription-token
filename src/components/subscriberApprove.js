@@ -56,6 +56,9 @@ class SubscriberApprove extends Component {
       if(!balances){
         balances = 0
       }
+      else{
+        balances = balances.toNumber()
+      }
       console.log("BALANCES",balances)
       let value2 = await storage['balances'].get(this.state.subscription.parts[0])
       let approvals
@@ -65,10 +68,13 @@ class SubscriberApprove extends Component {
       if(!approvals){
         approvals=0
       }
+      else{
+        approvals = approvals.toNumber()
+      }
       console.log("APPROVAL",approvals)
       this.setState({
-        balance: balances.toNumber(),
-        approved: approvals.toNumber()
+        balance: balances,
+        approved: approvals
       })
     }
   }

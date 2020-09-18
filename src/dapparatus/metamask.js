@@ -93,7 +93,6 @@ class Metamask extends Component {
 
 
     checkMetamask = async () => {
-        if (this.state.config.DEBUG) console.log('METAMASK - checking state...');
         if (!this.state.hasRequestedAccess) { // Prevent multiple prompts
             if (this.state.config.DEBUG) console.log('THANOS - requesting access from user...');
             this.setState({ hasRequestedAccess: true }, () => {
@@ -101,10 +100,10 @@ class Metamask extends Component {
             });
             try {
                 const Tezos = new TezosToolkit();
-                Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
+                Tezos.setProvider({ rpc: 'https://testnet.tezster.tech' });
                 
                 const wallet = await new TezBridgeWallet();
-                await wallet.setHost("https://api.tez.ie/rpc/carthagenet")
+                await wallet.setHost("https://testnet.tezster.tech")
                 await Tezos.setWalletProvider(wallet);
                 var accountPkh = await wallet.getPKH();
                 

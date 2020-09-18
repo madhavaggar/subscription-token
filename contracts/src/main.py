@@ -160,7 +160,6 @@ class Subscription(sp.Contract):
         trans = sp.record(owner = params.subscriber,spender = params.spender,contractAddress = sp.to_address(sp.self))
         sp.transfer(trans,sp.mutez(0),c)
         
-    
     def getHash(self,params):
         sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, publisher = sp.TAddress, tokenAddress = sp.TAddress, tokenAmount = sp.TNat, periodSeconds = sp.TInt, gasPrice = sp.TNat, nonce = sp.TNat).layout(("subscriber",("publisher",("tokenAddress",("tokenAmount",("periodSeconds", ("gasPrice","nonce"))))))))
         sp.verify((~self.data.reqToAddress.is_some()) | ( (self.data.reqToAddress.is_some()) & (self.data.reqToAddress.open_some() == params.publisher)) )
@@ -171,13 +170,13 @@ class Subscription(sp.Contract):
         
         return sp.pack(
             sp.record(
-                s = params.subscriber,
-                p = params.publisher,
-                tA = params.tokenAddress,
-                a = params.tokenAmount,
-                pS = params.periodSeconds,
-                gP = params.gasPrice,
-                n = params.nonce
+                a = params.subscriber,
+                b = params.publisher,
+                c = params.tokenAddress,
+                d = params.tokenAmount,
+                e = params.periodSeconds,
+                f = params.gasPrice,
+                g = params.nonce,
             )
         )
             
@@ -200,8 +199,6 @@ class Subscription(sp.Contract):
         sp.verify(sp.check_signature(params.subs_pub_key, params.userSignature,element.value))
         sp.verify(params.subscriber != params.publisher)
         sp.verify(sp.now >= self.data.times[element.value].nextValidTimeStamp)
-        sp.verify(self.data.allowance >= params.tokenAmount + params.gasPrice)
-        sp.verify(self.data.balance >= params.tokenAmount + params.gasPrice)
         self.data.times[element.value].ready = sp.bool(True)
             
     @sp.entry_point
@@ -213,7 +210,6 @@ class Subscription(sp.Contract):
     def viewAllowance(self,params):
         sp.set_type(params, sp.TNat)
         self.data.allowance = params
-        
     
     @sp.entry_point
     def executeSubs(self,params):   
@@ -298,23 +294,26 @@ if "templates" not in __name__:
         scenario.h1("Entry points")
         message_subs = sp.pack(
             sp.record(
-                s = alice.address,
-                p = admin.address,
-                tA = c2.address,
-                a = 1,
-                pS = 60,
-                gP = 0,
-                n = 0
+                a = alice.address,
+                b = admin.address,
+                c = bob.address,
+                d = 1,
+                e = 60,
+                f = 0,
+                g = 0
             )
         )
+    
         sig_from_alice = sp.make_signature(secret_key = alice.secret_key,
                                        message =  message_subs,
                                        message_format = "Raw")
+                                       
+        
         scenario += c2
         scenario += c1 
 
         
-        message_subs_alice = sp.pack(sp.record(s = alice.address, p = admin.address, tA = c2.address, a = 100, pS = 60, gP = 0, n = 1))
+        message_subs_alice = sp.pack(sp.record(a = alice.address, b = admin.address, c = c2.address, d = 100, e = 60, f = 0, g = 1))
         sig_from_alice = sp.make_signature(secret_key = alice.secret_key,
                                        message =  message_subs_alice,
                                        message_format = "Raw")                               
@@ -358,7 +357,7 @@ if "templates" not in __name__:
         
         
         scenario.h1("Test 2")
-        message_subs_alice = sp.pack(sp.record(s = alice.address, p = admin.address, tA = c2.address, a = 100, pS = 60, gP = 5, n = 1))
+        message_subs_alice = sp.pack(sp.record(a = alice.address, b = admin.address, c = c2.address, d = 100, e = 60, f = 5, g = 1))
         sig_from_alice = sp.make_signature(secret_key = alice.secret_key,
                                        message =  message_subs_alice,
                                        message_format = "Raw")

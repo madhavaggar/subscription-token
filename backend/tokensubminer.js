@@ -16,9 +16,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 var cors = require('cors')
 app.use(cors())
-const admin = require('../utils/keystore/admin')
-const signer = InMemorySigner.fromSecretKey(admin.privateKey);
-Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: signer });
+const admin = require('../utils/keystore/admin');
+const { parse } = require('path');
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+  });
 
 
 //const DESKTOPMINERACCOUNT = 4 //index in geth
@@ -59,21 +65,16 @@ let redis = new Redis({
     host: redisHost,
 })
 
+
+
 //my local geth node takes a while to spin up so I don't want to start parsing until I'm getting real data
 async function checkForGeth() {
 
-    console.log("LOADING CONTRACTS")
-    let contracts = await ContractLoader(["WasteToken","Subscription"],Tezos)
+    const signer = await InMemorySigner.fromSecretKey(admin.privateKey);
+    Tezos.setProvider({ rpc: 'https://testnet.tezster.tech', signer: signer });
 
-    let storage = await contracts["Subscription"].storage()
-    if(!storage){
-        console.log("AUTHOR (GETH CHECK LED TO AN ERROR) ")
-            setTimeout(checkForGeth, 15000);
-    } 
-    else {
-        console.log("Starting parsers...")
-        startParsers()
-    }
+    console.log("Starting parsers...")
+    startParsers()
 }
 checkForGeth()
 
@@ -89,9 +90,38 @@ async function startParsers() {
             console.log("current subscriptions:", subscriptions.length)
             for (let t in subscriptions) {
                 try {
-                    console.log("Check Sub Signature:", subscriptions[t].signature)
+                    let sign = await Tezos.signer.sign(subscriptions[t].subscriptionHash)
+                    subscriptions[t].signature = sign.prefixSig
+                    console.log("Subscription details", subscriptions[t])
+                    console.log("Check changed Signature:", subscriptions[t].signature)
+                    console.log("Loading Subscription ......")
                     let contract = await Tezos.contract.at(subscriptions[t].subscriptionContract)
-                    console.log("loading hash...")
+                    console.log("Running initial Checks.....")
+                    let WasteToken = await Tezos.contract.at(subscriptions[t].parts[2])
+                    let storage = await WasteToken.storage()
+                    let value1 = await storage['balances'].get(subscriptions[t].parts[0])
+                    let balances
+                    if(value1)
+                        balances = value1['balance']
+                    if(!balances){
+                        balances = 0
+                    }
+                    else{
+                        balances = balances.toNumber()
+                    }
+                    console.log("BALANCE",balances)
+                    let value2 = await storage['balances'].get(subscriptions[t].parts[0])
+                    let approvals
+                    if(value2){
+                        approvals = await value2['approvals'].get(subscriptions[t].subscriptionContract)
+                    }
+                    if(!approvals){
+                        approvals=0
+                    }
+                    else{
+                        approvals = approvals.toNumber()
+                    }
+                    console.log("ALLOWANCE",approvals)
                     //let doubleCheckHash = await contract.methods.getSubscriptionHash(subscriptions[t].parts[0], subscriptions[t].parts[1], subscriptions[t].parts[2], subscriptions[t].parts[3], subscriptions[t].parts[4], subscriptions[t].parts[5], subscriptions[t].parts[6]).call()
                     //console.log("doubleCheckHash:", doubleCheckHash)
                     //console.log("checking if ready...")
@@ -99,8 +129,12 @@ async function startParsers() {
                     //console.log("READY:", ready)
                     //if (ready) {
                      //   console.log("subscription says it's ready...........")
-
-                    doSubscription(contract, subscriptions[t])
+                    console.log("Check Log", parseFloat(subscriptions[t].parts[3])+ parseFloat(subscriptions[t].parts[5]))
+                    if( (approvals >= parseFloat(subscriptions[t].parts[3]) + parseFloat(subscriptions[t].parts[5]) ) && 
+                    (balances >= parseFloat(subscriptions[t].parts[3]) + parseFloat(subscriptions[t].parts[5]) ) ){
+                        console.log("Balance-Approval check passed")
+                        doSubscription(contract, subscriptions[t],Tezos)
+                    }
                     //}
                 } catch (e) { console.log(e) }
             }
@@ -357,24 +391,27 @@ function doTransaction(contract, txObject) {
 }
 */
 
-async function doSubscription(contract, subscriptionObject) {
-    console.log("!!!!!!!!!!!!!!!!!!!        ------------ Running subscription on contract ", contract._address, " with local account ", admin.publicKeyHash, " with gas set by Default")
+async function doSubscription(contract, subscriptionObject,Tezos) {
+    console.log("!!!!!!!!!!!!!!!!!!!\n------------ Running subscription on contract ", subscriptionObject.subscriptionContract, " \nwith local account ", admin.publicKeyHash, " with gas set by Default")
 
     //const result = await clevis("contract","forward","BouncerProxy",accountIndexSender,sig,accounts[accountIndexSigner],localContractAddress("Example"),"0",data,rewardAddress,reqardAmount)
     console.log("subscriptionObject", subscriptionObject.parts[0], subscriptionObject.parts[1], subscriptionObject.parts[2], subscriptionObject.parts[3], subscriptionObject.parts[4], subscriptionObject.parts[5], subscriptionObject.parts[6])
     console.log("---========= EXEC ===========-----")
     console.log(subscriptionObject)
-    const op = await contract.methods.executeSubs(
-        subscriptionObject.parts[0],
-        subscriptionObject.parts[1],
-        subscriptionObject.parts[2],
-        subscriptionObject.parts[3],
-        subscriptionObject.parts[4],
-        subscriptionObject.parts[5],
-        subscriptionObject.parts[6],
-        subscriptionObject.signature,
-        Tezos.signer.publicKey,
-        ).send();
-    await op.confirmation();
-        
+    var key = await Tezos.signer.publicKey()
+    console.log("Sent public key",key)
+    try{
+        const op = await contract.methods.executeSubs(
+            subscriptionObject.parts[0],
+            subscriptionObject.parts[1],
+            subscriptionObject.parts[2],
+            subscriptionObject.parts[3],
+            subscriptionObject.parts[4],
+            subscriptionObject.parts[5],
+            subscriptionObject.parts[6],
+            subscriptionObject.signature,
+            key,
+            ).send();
+        await op.confirmation();
+    }catch (e) { console.log(e) }   
 }

@@ -186,7 +186,7 @@ class App extends Component {
                   address:"0x0000000000000000000000000000000000000000",
                   name:"*ANY*",
                   symbol:"*ANY*",
-                  imageUrl:"https://tokensubscription.com/logo.png"
+                  imageUrl:"https://s2.coinmarketcap.com/static/img/coins/32x32/1896.png"
               }
             )
              Coins.push(

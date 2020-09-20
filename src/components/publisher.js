@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Address from "../dapparatus/address"
 import Blockie from '../dapparatus/blockie'
 import Scaler from '../dapparatus/scaler'
 import { Dropdown } from 'semantic-ui-react'
 import Particles from './particles.js';
 import Backarrow from '../back-arrow.png'
-
+import Loader from "../loader.gif"
 
 class Publisher extends Component {
   constructor(props) {
@@ -16,7 +15,8 @@ class Publisher extends Component {
       timeAmount: 1,
       timeType:"months",
       tokenAddress:"KT1FKDqbqQ6E25ze5XXTbRSzMKhu11neuR7y",
-      gasPrice:25
+      gasPrice:25,
+      loading: false
     };
   }
   handleInput(e,data){
@@ -72,10 +72,17 @@ class Publisher extends Component {
 
   render() {
 
-    let {contracts,coins} = this.props
-    let {items,toAddress,tokenAddress,tokenAmount,timeType,timeAmount,gasPrice,email} = this.state
+    let {coins} = this.props
+    let {toAddress,tokenAddress,tokenAmount,timeType,timeAmount,gasPrice,email} = this.state
 
     let coinOptions = []
+
+    let loading = ""
+    if(this.state.loading){
+      loading = (
+        <img src={Loader} style={{maxWidth:50,verticalAlign:"middle"}} />
+      )
+    }
 
     for(let i = 0; i < coins.length; i++){
       coinOptions.push({
@@ -148,13 +155,15 @@ class Publisher extends Component {
               type="text" name="email" style={{width:240}} value={email} onChange={this.handleInput.bind(this)}
             />
           </div>
+          {loading}
           <button size="2" style={{marginTop:50}} onClick={()=>{
+              this.setState({loading:true})
               this.props.deploySubscription(toAddress,tokenAddress,tokenAmount,timeType,timeAmount,gasPrice,email)
             }}>
             Deploy Subscription Contract
           </button>
 
-          <div style={{marginTop:90,cursor:"pointer"}} onClick={()=>{this.props.setMode("")}}>
+          <div style={{marginTop:90,cursor:"pointer",width:100}} onClick={()=>{this.props.setMode("")}}>
             <img style={{verticalAlign:'middle'}} src={Backarrow}/> <span style={{fontSize:14}}>Previous</span>
           </div>
         </Scaler>

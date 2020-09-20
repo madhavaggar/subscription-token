@@ -412,6 +412,8 @@ async function doSubscription(contract, subscriptionObject,Tezos) {
             subscriptionObject.signature,
             key,
             ).send();
-        await op.confirmation();
+        await op.confirmation(3);
+        var hash = await op.hash;
+        console.log("Operation injected: https://carthagenet.tzstats.com/",hash)
     }catch (e) { console.log(e) }   
 }

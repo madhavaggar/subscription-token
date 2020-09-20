@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import Address from "../dapparatus/address"
-import Blockie from '../dapparatus/blockie'
 import Scaler from '../dapparatus/scaler'
-import { Dropdown } from 'semantic-ui-react'
 import Particles from './particles.js';
 import Logo from '../logo-icon.png';
-import Backarrow from '../back-arrow.png'
 
 
 class MainUI extends Component {

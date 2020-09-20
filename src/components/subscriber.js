@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Address from "../dapparatus/address"
 import Blockie from '../dapparatus/blockie'
 import Scaler from '../dapparatus/scaler'
 import axios from 'axios'
@@ -70,15 +69,15 @@ class Subscriber extends Component {
     this.setState({ url: url })
   }
   async sendSubscription() {
-    let { backendUrl, Tezos, account, contract } = this.props
+    let { backendUrl, Tezos, account } = this.props
     let { toAddress, timeType, tokenAmount, tokenAddress, gasPrice } = this.state
 
     console.log("The CONTRACT", this.props.contract)
 
     let subscriptionContract = await this.props.customContractLoader("Subscription", this.props.contract)
 
-    let value = 0
-    let gasLimit = 120000
+    //let value = 0
+    //let gasLimit = 120000
 
     let periodSeconds = this.state.timeAmount;
     if (timeType == "minutes") {

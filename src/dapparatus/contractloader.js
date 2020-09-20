@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Blockies from 'react-blockies';
 import deepmerge from 'deepmerge';
 const json = require('../contracts/config.json');
 
@@ -19,7 +18,6 @@ class ContractLoader extends Component {
     }
   }
   contractLoader = async (contractName,customAddress) => {
-    let {require} = this.props
     let {DEBUG} = this.state.config
     let resultingContract
    

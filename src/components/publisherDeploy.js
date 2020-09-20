@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Address from "../dapparatus/address"
-import Blockie from '../dapparatus/blockie'
 import Scaler from '../dapparatus/scaler'
 import Loader from '../loader.gif';
 import Particles from './particles.js';
@@ -44,29 +42,6 @@ class PublisherDeploy extends Component {
             <QRCode value={url} />
             <p>Embed a script on your website:</p>
             <pre>{"<script type='text/javascript' src='https://tokensubscription.com/coinsubscription.js?contract="+contractAddress+"' id='coinsubscription'></script>"}</pre>
-          </div>
-        </Scaler>
-      );
-    }else{
-      return (
-        <Scaler config={{startZoomAt:800,origin:"50px 50px"}}>
-          <Particles left={-1800} opacity={0.45} />
-          <h1 style={{marginTop: '30px'}}>Your contract is being deployed</h1>
-          <h3>(Make sure you <b>confirm</b> the metamask dialog to deploy your contract!)</h3>
-          <p style={{textAlign: 'center'}}>  <img src={Loader} style={{width: '50px', height: '50px', verticalAlign: 'middle', margin:'0 0 0 10px'}}/> {contractAddress}</p>
-          <p>Follow the instructions below to share your subscription</p>
-          <div>
-          <p>Add a link to your website:</p>
-            <pre>{"<a href='"+url+"' target='_blank'>Subscribe Now</a>"}</pre>
-            <p>Share Url:</p>
-            <pre>{url}</pre>
-            <p>QR Code:</p>
-            <QRCode value={url} />
-            <p>Embed a script on your website:</p>
-            <pre>{"<script type='text/javascript' src='https://tokensubscription.com/coinsubscription.js?contract="+contractAddress+"' id='coinsubscription'></script>\n"}</pre>
-          </div>
-          <div style={{marginTop:90,cursor:"pointer"}} onClick={()=>{this.props.setMode("")}}>
-            <img style={{verticalAlign:'middle'}} src={Backarrow}/> <span style={{fontSize:14}}>Previous</span>
           </div>
         </Scaler>
       );

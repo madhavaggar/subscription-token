@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Address from "../dapparatus/address"
-import Blockie from '../dapparatus/blockie'
 import Scaler from '../dapparatus/scaler'
 import axios from 'axios'
 import Particles from '../particles.png';
@@ -84,7 +83,6 @@ class SubscriberApprove extends Component {
     this.setState(update)
   }
   render() {
-    let {Tezos} = this.props
     if(!this.state.subscription){
       return (
         <div><img src={Loader} style={{maxWidth:80,verticalAlign:'middle'}} /> Loading Subscription...</div>
@@ -156,7 +154,8 @@ class SubscriberApprove extends Component {
           Approved Tokens: <span style={{color:approvedColor}}>{this.state.approved}</span>
         </div>
         <div style={{marginTop:40}} className="form-field">
-        {loading}<input
+        {loading}
+        <input
           type="text" name="approve" value={this.state.approve} onChange={this.handleInput.bind(this)}
         />
           <button size="2" onClick={async  ()=>{

@@ -2,8 +2,6 @@
 import React, { Component } from 'react'; 
 import './App.css';
 //import { Gas } from "dapparatus"
-import Button from './dapparatus/button'
-import Scaler from './dapparatus/scaler'
 import ContractLoader from './dapparatus/contractloader';
 import Metamask from './dapparatus/metamask';
 import { TezosToolkit, MichelsonMap } from '@taquito/taquito';
@@ -165,7 +163,7 @@ class App extends Component {
   }
 
   render() {
-    let {Tezos,account,contracts,tzstats,mode,deployedAddress} = this.state
+    let {Tezos,contracts,mode,deployedAddress} = this.state
     let connectedDisplay = []
     let contractsDisplay = []
     let noTezosDisplay = ""

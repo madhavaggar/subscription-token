@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import Address from "../dapparatus/address"
-import Blockie from '../dapparatus/blockie'
-import Scaler from '../dapparatus/scaler'
-import { Dropdown } from 'semantic-ui-react'
 import Particles from '../particles.png';
 
 class ParticlesRender extends Component {

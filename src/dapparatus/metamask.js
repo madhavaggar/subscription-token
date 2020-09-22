@@ -100,10 +100,10 @@ class Metamask extends Component {
             });
             try {
                 const Tezos = new TezosToolkit();
-                Tezos.setProvider({ rpc: 'https://testnet.tezster.tech' });
+                Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
                 
                 const wallet = await new TezBridgeWallet();
-                await wallet.setHost("https://testnet.tezster.tech")
+                await wallet.setHost("https://api.tez.ie/rpc/carthagenet")
                 await Tezos.setWalletProvider(wallet);
                 var accountPkh = await wallet.getPKH();
                 

@@ -71,7 +71,7 @@ let redis = new Redis({
 async function checkForGeth() {
 
     const signer = await InMemorySigner.fromSecretKey(admin.privateKey);
-    Tezos.setProvider({ rpc: 'https://testnet.tezster.tech', signer: signer });
+    Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet', signer: signer });
 
     console.log("Starting parsers...")
     startParsers()

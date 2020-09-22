@@ -41,7 +41,7 @@ class Address extends Component {
     load = async () => {
         try {
             let Tezos = new TezosToolkit();
-            Tezos.setProvider({ rpc: 'https://testnet.tezster.tech' });
+            Tezos.setProvider({ rpc: 'https://api.tez.ie/rpc/carthagenet' });
 
 
             var balance = await Tezos.tz.getBalance(this.props.address);

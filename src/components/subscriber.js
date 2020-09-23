@@ -323,7 +323,7 @@ class Subscriber extends Component {
         }
       }).then((response) => {
         console.log("TX RESULT", response.data.subscriptionHash)
-        window.location = "/HASH" + response.data.subscriptionHash
+        window.location = "/subscription-token/HASH" + response.data.subscriptionHash
       })
         .catch((error) => {
           console.log(error);

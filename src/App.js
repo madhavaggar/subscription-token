@@ -24,7 +24,7 @@ class App extends Component {
     super(props);
     let contract
     let subscription
-    let path = window.location.pathname.replace("/","")
+    let path = window.location.pathname.replace("/subscription-token/","")
 
     if(path.length==36 && path.startsWith('KT')){ // length with address
       contract = path
@@ -276,7 +276,7 @@ class App extends Component {
     let forkBanner = ""
     if(!this.state.mode){
       forkBanner = (
-        <a href="https://github.com/austintgriffith/tokensubscription.com">
+        <a href="https://github.com/madhavaggar/subscription-token">
         </a>
       )
     }

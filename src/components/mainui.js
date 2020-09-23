@@ -33,7 +33,7 @@ class MainUI extends Component {
               <div style={{marginTop:200,opacity:0.7,fontSize:15}}>
               <div>Disclaimer: <span style={{color:"#FFFFFF"}}>We built this in a weekend!</span></div>
               <div>You should inspect <a style={{color:"#dddddd"}} href={"https://carthagenet.tzstats.com/"+this.state.contractLink}>our smart contract</a> before using.</div>
-              <div>100% free and open source! Please <a style={{color:"#dddddd"}} href="https://github.com/madhavaggar/Tezos_Subscription_Token">contribute</a>!</div>
+              <div>100% free and open source! Please <a style={{color:"#dddddd"}} href="https://github.com/madhavaggar/subscription-token">contribute</a>!</div>
               </div>
           </div>
         </Scaler>

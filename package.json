@@ -84,7 +84,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/madhavaggar/Tezos_Subscription_Token"
+    "url": "git+https://github.com/madhavaggar/subscription-token"
   },
   "keywords": [
     "tezos",

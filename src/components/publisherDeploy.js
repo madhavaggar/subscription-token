@@ -20,12 +20,12 @@ class PublisherDeploy extends Component {
     let contractAddress = deployedAddress
 
 
-    let url = window.location.origin+"/subscription-token/"+contractAddress
+    let url = window.location.origin+"/"+contractAddress
 
     let deployed = ""
     if(deployedAddress){
       contractAddress=deployedAddress
-      url = window.location.origin+"/subscription-token/"+contractAddress
+      url = window.location.origin+"/"+contractAddress
       return (
         <Scaler config={{startZoomAt:800,origin:"50px 50px"}}>
           <Particles left={-1800} opacity={0.45} />

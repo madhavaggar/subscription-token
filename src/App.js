@@ -24,7 +24,7 @@ class App extends Component {
     super(props);
     let contract
     let subscription
-    let path = window.location.pathname.replace("/subscription-token/","")
+    let path = window.location.pathname.replace("/","")
 
     if(path.length==36 && path.startsWith('KT')){ // length with address
       contract = path

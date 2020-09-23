@@ -1,4 +1,5 @@
 {
+  "homepage": "http://madhavaggar.github.io/subscription-token",
   "name": "subscription-token",
   "version": "0.1.0",
   "description": "Subscription Based Model",
@@ -22,6 +23,7 @@
     "deepmerge": "^4.2.2",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "gh-pages": "^3.1.0",
     "helmet": "^4.1.1",
     "ioredis": "^4.17.3",
     "moment": "^2.27.0",
@@ -34,8 +36,8 @@
     "react-motion": "^0.5.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "redux": "^4.0.5",
     "react-transition-group": "^2.4.0",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.82.3"
   },
@@ -44,6 +46,7 @@
     "deploy-dev": "node ./utils/scripts/deploy.js",
     "deploy": "node ./utils/scripts/main.js",
     "test-contracts": "node ./utils/scripts/test.js",
+    "deploypage": "gh-pages -d build",
     "test-contracts-verbose": "node ./utils/scripts/test.js --verbose",
     "start": "react-scripts start",
     "build": "react-scripts build",

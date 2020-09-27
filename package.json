@@ -1,5 +1,4 @@
 {
-  "homepage": "http://madhavaggar.github.io/subscription-token",
   "name": "subscription-token",
   "version": "0.1.0",
   "description": "Subscription Based Model",
@@ -45,7 +44,6 @@
     "deploy-dev": "node ./utils/scripts/deploy.js",
     "deploy": "node ./utils/scripts/main.js",
     "test-contracts": "node ./utils/scripts/test.js",
-    "deploypage": "gh-pages -d build",
     "test-contracts-verbose": "node ./utils/scripts/test.js --verbose",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -79,7 +77,9 @@
     "babel-loader": "^8.1.0",
     "bs58check": "^2.1.2",
     "chalk": "^4.1.0",
-    "libsodium-wrappers-sumo": "^0.7.8"
+    "libsodium-wrappers-sumo": "^0.7.8",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.1.4"
   },
   "repository": {
     "type": "git",

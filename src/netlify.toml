@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/*"
+  to = "https://priceless-albattani-c43561.netlify.app/"
+  status = 301
+  force = false
+  query = {path = ":path"}
+  conditions = {Language = ["en"], Country = ["US"], Role = ["admin"]}

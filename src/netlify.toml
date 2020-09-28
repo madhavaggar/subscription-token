@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/*"
+  from = "https://priceless-albattani-c43561.netlify.app/*"
   to = "https://priceless-albattani-c43561.netlify.app/"
   status = 301
   force = false

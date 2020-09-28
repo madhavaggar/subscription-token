@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 //import { Gas } from "dapparatus"
 import ContractLoader from './dapparatus/contractloader';
-import Metamask from './dapparatus/metamask';
+import Thanos from './dapparatus/thanos';
 import { TezosToolkit, MichelsonMap } from '@taquito/taquito';
 import MainUI from './components/mainui.js'
 import Subscriber from './components/subscriber.js'
@@ -181,7 +181,7 @@ class App extends Component {
              console.log("Contracts Are Ready:",this.state.contracts)
              Coins.unshift(
               {
-                  address:"0x0000000000000000000000000000000000000000",
+                  address: null,
                   name:"*ANY*",
                   symbol:"*ANY*",
                   imageUrl:"https://s2.coinmarketcap.com/static/img/coins/32x32/1896.png"
@@ -284,7 +284,7 @@ class App extends Component {
     return (
       <div className="App">
          {forkBanner}
-        <Metamask
+        <Thanos
           config={{
             requiredNetwork:['carthagenet'],
             DEBUG: true,

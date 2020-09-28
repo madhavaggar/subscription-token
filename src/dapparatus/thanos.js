@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import deepmerge from 'deepmerge';
-import logo from '../metamask.png';
-import eth from '../ethereum.png';
+import logo from '../thanos.png';
+import eth from '../tezos.png';
 import Scaler from './scaler.js';
 import Blockies from 'react-blockies';
 import { TezosToolkit } from '@taquito/taquito';
@@ -52,7 +52,7 @@ defaultConfig.blockieStyle = {
 defaultConfig.requiredNetwork = [
     "carthagenet"
 ];
-class Metamask extends Component {
+class Thanos extends Component {
     constructor(props) {
         super(props);
         let config = defaultConfig;
@@ -82,17 +82,17 @@ class Metamask extends Component {
     }
     componentDidMount() {
         interval = setInterval(
-            this.checkMetamask.bind(this),
+            this.checkThanos.bind(this),
             this.state.config.POLLINTERVAL
         );
-        this.checkMetamask();
+        this.checkThanos();
     }
     componentWillUnmount() {
         clearInterval(interval);
     }
 
 
-    checkMetamask = async () => {
+    checkThanos = async () => {
         if (!this.state.hasRequestedAccess) { // Prevent multiple prompts
             if (this.state.config.DEBUG) console.log('THANOS - requesting access from user...');
             this.setState({ hasRequestedAccess: true }, () => {
@@ -143,12 +143,12 @@ class Metamask extends Component {
 
 
     render() {
-        let metamask = 'loading.';
+        let thanos = 'loading.';
         if (this.props.config.hide) {
-            metamask = [];
+            thanos = [];
         }
         else if (this.state.status == 'loading') {
-            metamask = (
+            thanos = (
                 <a target="_blank" href="https://thanoswallet.com/">
                     <span style={this.state.config.textStyle}>loading...</span>
                     <img
@@ -175,7 +175,7 @@ class Metamask extends Component {
             const ln = this.state.account.length;
             let displayName = `${this.state.account.slice(0, 7)}...${this.state.account.slice(ln - 4, ln)}`;
 
-            metamask = (
+            thanos = (
                 <div style={this.state.config.boxStyle}>
                     <a
                         target="_blank"
@@ -215,17 +215,17 @@ class Metamask extends Component {
                 </div>
             );
         } else {
-            metamask = 'error unknown state: ' + this.state.status;
+            thanos = 'error unknown state: ' + this.state.status;
         }
 
         return (
             <div style={this.state.config.outerBoxStyle}>
                 <Scaler config={{ origin: 'top right', adjustedZoom: 1.5 }}>
-                    {metamask}
+                    {thanos}
                 </Scaler>
             </div>
         );
 
     }
 }
-export default Metamask;
+export default Thanos;

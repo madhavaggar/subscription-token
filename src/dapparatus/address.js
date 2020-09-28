@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import deepmerge from 'deepmerge';
-import eth from '../ethereum.png';
+import eth from '../tezos.png';
 import Blockie from './blockie.js';
 import { TezosToolkit } from '@taquito/taquito';
 

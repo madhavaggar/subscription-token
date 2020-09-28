@@ -107,8 +107,8 @@ class Subscriber extends Component {
     }
 
     //TODO convert here
-    let realTokenAmount = tokenAmount
-    let realGasPrice = gasPrice
+    let realTokenAmount = tokenAmount * (10**6)
+    let realGasPrice = gasPrice * (10**6)
     /*
     address from, //the subscriber
     address to, //the publisher

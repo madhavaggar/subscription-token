@@ -13,7 +13,9 @@ A Subscription-Based Token Model for the Tezos India Fellowship
 1. `yarn install` (Installs all dependencies for contracts as well as Reactjs)
 2. `npm run test-contracts`
 3. `npm run deploy` (Deploys contracts as per `utils/scripts/main.js` and `contractsConfig.json`)
-4. `npm run start` (Starts Reactjs website on port 3000)
+4.  Install Redis and run a server on port `57300`.
+5.  On a seperate terminal run `node ./backend/tokensubminer.js`
+6. `npm run start` (Starts Reactjs website on port 3000)
 
 
 

@@ -107,8 +107,8 @@ class Subscriber extends Component {
     }
 
     //TODO convert here
-    let realTokenAmount = tokenAmount
-    let realGasPrice = gasPrice 
+    let realTokenAmount = tokenAmount *(10**6)
+    let realGasPrice = gasPrice * (10**6)
     /*
     address from, //the subscriber
     address to, //the publisher
@@ -387,6 +387,8 @@ class Subscriber extends Component {
           }
         }
         let requiredGasPrice = await value['reqGasPrice']
+        requiredGasPrice = requiredGasPrice/(10**6)
+        requiredTokenAmount = requiredTokenAmount/(10**6)
         console.log("requiredTokenAmount", requiredTokenAmount)
         console.log(requiredGasPrice);
         this.setState({
@@ -480,7 +482,7 @@ class Subscriber extends Component {
                 />
 
                 <label>Amount:</label>
-                <input type="text" name="tokenAmount" value={tokenAmount * (10**6)} onChange={this.handleInput.bind(this)} />
+                <input type="text" name="tokenAmount" value={tokenAmount} onChange={this.handleInput.bind(this)} />
               </div>
               <div className="form-field">
                 <label>Recurring Every:</label>

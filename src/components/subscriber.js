@@ -50,6 +50,9 @@ class Subscriber extends Component {
         }
       }
     } else {
+      if(e.target.name == "tokenAmount" || e.target.name == "gasPrice"){
+        e.target.value = e.target.value * (10**6)
+      }
       update[e.target.name] = e.target.value
     }
     //  console.log("==== UPDATE",update)
@@ -107,8 +110,8 @@ class Subscriber extends Component {
     }
 
     //TODO convert here
-    let realTokenAmount = tokenAmount * (10**6)
-    let realGasPrice = gasPrice * (10**6)
+    let realTokenAmount = tokenAmount
+    let realGasPrice = gasPrice 
     /*
     address from, //the subscriber
     address to, //the publisher

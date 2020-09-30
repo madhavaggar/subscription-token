@@ -56,7 +56,7 @@ let redisPort = 57300
 let LOOPTIME = 15000
 
 if (NETWORK > 0 && NETWORK < 9) {
-    redisHost = 'cryptogsnew.048tmy.0001.use2.cache.amazonaws.com'
+    redisHost = '65.0.41.80'
     redisPort = 6379
     LOOPTIME = 15000
 }

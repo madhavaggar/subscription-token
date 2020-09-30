@@ -50,9 +50,6 @@ class Subscriber extends Component {
         }
       }
     } else {
-      if(e.target.name == "tokenAmount" || e.target.name == "gasPrice"){
-        e.target.value = e.target.value * (10**6)
-      }
       update[e.target.name] = e.target.value
     }
     //  console.log("==== UPDATE",update)
@@ -483,7 +480,7 @@ class Subscriber extends Component {
                 />
 
                 <label>Amount:</label>
-                <input type="text" name="tokenAmount" value={tokenAmount} onChange={this.handleInput.bind(this)} />
+                <input type="text" name="tokenAmount" value={tokenAmount * (10**6)} onChange={this.handleInput.bind(this)} />
               </div>
               <div className="form-field">
                 <label>Recurring Every:</label>

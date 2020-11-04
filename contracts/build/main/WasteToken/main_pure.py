@@ -104,7 +104,6 @@ class Viewer(sp.Contract):
     @sp.entry_point
     def target(self, params):
         self.data.last = sp.some(params)
-        
 
 class Subscription(sp.Contract):
     def __init__(self,admin,requiredToAddress,requiredTokenAddress,requiredTokenAmount,requiredPeriodSeconds,requiredGasPrice):
@@ -148,6 +147,35 @@ class Subscription(sp.Contract):
     def addAddressIfNecessary(self, address):
         with sp.if_(~ self.data.extraNonce.contains(address)):
             self.data.extraNonce[address] = sp.record(value = 0)
+            
+    @sp.entry_point        
+    def updateBalance(self,params):
+        sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, tokenAddress = sp.TAddress).layout(("subscriber","tokenAddress")))
+        c = sp.contract(
+            sp.TRecord(
+                owner = sp.TAddress,
+                contractAddress = sp.TAddress
+            ),
+            params.tokenAddress,
+            entry_point ="getBalance"
+        ).open_some()
+        trans = sp.record(owner = params.subscriber,contractAddress = sp.to_address(sp.self))
+        sp.transfer(trans,sp.mutez(0),c)
+    
+    @sp.entry_point    
+    def updateAllowance(self,params):
+        sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, spender = sp.TAddress, tokenAddress = sp.TAddress).layout(("spender",("subscriber","tokenAddress"))))
+        c = sp.contract(
+            sp.TRecord(
+                owner = sp.TAddress,
+                spender = sp.TAddress,
+                contractAddress = sp.TAddress
+            ),
+            params.tokenAddress,
+            entry_point ="getAllowance"
+        ).open_some()
+        trans = sp.record(owner = params.subscriber,spender = params.spender,contractAddress = sp.to_address(sp.self))
+        sp.transfer(trans,sp.mutez(0),c)
         
     def getHash(self,params):
         sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, publisher = sp.TAddress, tokenAddress = sp.TAddress, tokenAmount = sp.TNat, periodSeconds = sp.TInt, gasPrice = sp.TNat, nonce = sp.TNat).layout(("subscriber",("publisher",("tokenAddress",("tokenAmount",("periodSeconds", ("gasPrice","nonce"))))))))
@@ -189,6 +217,16 @@ class Subscription(sp.Contract):
         sp.verify(params.subscriber != params.publisher)
         sp.verify(sp.now >= self.data.times[element.value].nextValidTimeStamp)
         self.data.times[element.value].ready = sp.bool(True)
+            
+    @sp.entry_point
+    def viewBalance(self,params):
+        sp.set_type(params, sp.TNat)
+        self.data.balance = params
+    
+    @sp.entry_point
+    def viewAllowance(self,params):
+        sp.set_type(params, sp.TNat)
+        self.data.allowance = params
     
     @sp.entry_point
     def executeSubs(self,params):   
@@ -303,36 +341,16 @@ if "templates" not in __name__:
         
         scenario.h2("Approve First")
         scenario += c2.approve(spender = c1.address, value = 1200).run(sender = alice)
-        
-        #scenario.h2("Update Balance")
-        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
-        
-        #scenario.h2("Update Allowance")
-        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
-        
-        
+
         scenario.h2("Execute Subscription")
-        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True)
+        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True)
         
-        #scenario.h2("Update Balance")
-        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
-        
-        #scenario.h2("Update Allowance")
-        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
-        
-       
+
         scenario.h2("Execute Subscription - 2")
-        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True, now = sp.timestamp(60))
-        
-        #scenario.h2("Update Balance")
-        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
-        
-        #scenario.h2("Update Allowance")
-        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
-        
+        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,now = 60)
+
         scenario.h2("Cancel Subscription")
-        scenario += c1.cancelSub(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True,sender = alice)
-        
+        scenario += c1.cancelSub(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,sender = alice)
         
         
         scenario.h1("Test 2")
@@ -343,33 +361,14 @@ if "templates" not in __name__:
         
         scenario.h2("Mint for Alice First")
         scenario += c2.mint(address = alice.address, value = 1200).run(sender = admin)
-        
-        #scenario.h2("Update Balance")
-        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
-        
-        #scenario.h2("Update Allowance")
-        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
-        
+
         
         scenario.h2("Execute Subscription")
-        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True, sender = admin)
-        
-        #scenario.h2("Update Balance")
-        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
-        
-        #scenario.h2("Update Allowance")
-        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
-        
+        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True)
        
         scenario.h2("Execute Subscription - 2")
-        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True,now = sp.timestamp(120), sender = admin)
-        
-        #scenario.h2("Update Balance")
-        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
-        
-        #scenario.h2("Update Allowance")
-        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
-        
+        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,now = 120)
+
         scenario.h2("Cancel Subscription")
-        scenario += c1.cancelSub(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True,sender = alice)
+        scenario += c1.cancelSub(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,sender = alice)
         

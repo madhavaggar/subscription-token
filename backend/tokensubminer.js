@@ -44,7 +44,7 @@ web3.eth.getAccounts().then((_accounts) => {
 //    console.log("No deploy.network found exiting...")
 //    process.exit()
 //}
-const NETWORK = 5
+const NETWORK = 0
 console.log("NETWORK:", NETWORK)
 
 let subscriptionListKey = "subscriptionListTokenSubDotCom" + NETWORK

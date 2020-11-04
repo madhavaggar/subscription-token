@@ -287,7 +287,6 @@ class Subscriber extends Component {
           },
         }
       );
-
       const subscriptionHash = packedData.data.packed;
       */
 

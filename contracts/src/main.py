@@ -147,35 +147,6 @@ class Subscription(sp.Contract):
     def addAddressIfNecessary(self, address):
         sp.if ~ self.data.extraNonce.contains(address):
             self.data.extraNonce[address] = sp.record(value = 0)
-            
-    @sp.entry_point        
-    def updateBalance(self,params):
-        sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, tokenAddress = sp.TAddress).layout(("subscriber","tokenAddress")))
-        c = sp.contract(
-            sp.TRecord(
-                owner = sp.TAddress,
-                contractAddress = sp.TAddress
-            ),
-            params.tokenAddress,
-            entry_point ="getBalance"
-        ).open_some()
-        trans = sp.record(owner = params.subscriber,contractAddress = sp.to_address(sp.self))
-        sp.transfer(trans,sp.mutez(0),c)
-    
-    @sp.entry_point    
-    def updateAllowance(self,params):
-        sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, spender = sp.TAddress, tokenAddress = sp.TAddress).layout(("spender",("subscriber","tokenAddress"))))
-        c = sp.contract(
-            sp.TRecord(
-                owner = sp.TAddress,
-                spender = sp.TAddress,
-                contractAddress = sp.TAddress
-            ),
-            params.tokenAddress,
-            entry_point ="getAllowance"
-        ).open_some()
-        trans = sp.record(owner = params.subscriber,spender = params.spender,contractAddress = sp.to_address(sp.self))
-        sp.transfer(trans,sp.mutez(0),c)
         
     def getHash(self,params):
         sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, publisher = sp.TAddress, tokenAddress = sp.TAddress, tokenAmount = sp.TNat, periodSeconds = sp.TInt, gasPrice = sp.TNat, nonce = sp.TNat).layout(("subscriber",("publisher",("tokenAddress",("tokenAmount",("periodSeconds", ("gasPrice","nonce"))))))))
@@ -218,15 +189,6 @@ class Subscription(sp.Contract):
         sp.verify(sp.now >= self.data.times[element.value].nextValidTimeStamp)
         self.data.times[element.value].ready = sp.bool(True)
             
-    @sp.entry_point
-    def viewBalance(self,params):
-        sp.set_type(params, sp.TNat)
-        self.data.balance = params
-    
-    @sp.entry_point
-    def viewAllowance(self,params):
-        sp.set_type(params, sp.TNat)
-        self.data.allowance = params
     
     @sp.entry_point
     def executeSubs(self,params):   

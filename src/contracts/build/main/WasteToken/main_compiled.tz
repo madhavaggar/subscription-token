@@ -1,4 +1,4 @@
-parameter (or (or (or (pair %approve (address %spender) (nat %value)) (pair %burn (address %address) (nat %value))) (or (address %getAdministrator) (or (pair %getAllowance (address %contractAddress) (pair (address %owner) (address %spender))) (pair %getBalance (address %contractAddress) (address %owner))))) (or (or (address %getTotalSupply) (pair %mint (address %address) (nat %value))) (or (address %setAdministrator) (or (bool %setPause) (pair %transfer (address %from_) (pair (address %to_) (nat %value)))))));
+parameter (or (or (or (pair %approve (address %spender) (nat %value)) (pair %burn (address %address) (nat %value))) (or (pair %getAdministrator unit address) (or (pair %getAllowance (pair (address %owner) (address %spender)) address) (pair %getBalance address address)))) (or (or (pair %getTotalSupply unit address) (pair %mint (address %address) (nat %value))) (or (address %setAdministrator) (or (bool %setPause) (pair %transfer (address %from) (pair (address %to) (nat %value)))))));
 storage   (pair (pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance)))) (pair (bool %paused) (nat %totalSupply)));
 code
   {
@@ -34,10 +34,10 @@ code
                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : @parameter%approve : @storage
                 IF_SOME
                   {
-                    # of_some: Get-item:38 # @some : nat : @parameter%approve : @storage
+                    # of_some: Get-item:25 # @some : nat : @parameter%approve : @storage
                   }
                   {
-                    PUSH int 38; # int : nat : @parameter%approve : @storage
+                    PUSH int 25; # int : nat : @parameter%approve : @storage
                     FAILWITH;   # FAILED
                   }; # @some : nat : @parameter%approve : @storage
                 CAR;        # map address nat : nat : @parameter%approve : @storage
@@ -48,7 +48,7 @@ code
                 GET;        # option nat : nat : @parameter%approve : @storage
                 IF_SOME
                   {
-                    # of_some: Get-item:38 # @some : nat : @parameter%approve : @storage
+                    # of_some: Get-item:25 # @some : nat : @parameter%approve : @storage
                   }
                   {
                     PUSH nat 0; # nat : nat : @parameter%approve : @storage
@@ -90,7 +90,7 @@ code
                 IF_SOME
                   {}
                   {
-                    PUSH int 40; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
+                    PUSH int 27; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
                     FAILWITH;   # FAILED
                   }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
                 DUP;        # @some : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%approve
@@ -143,10 +143,10 @@ code
                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : @parameter%burn : @storage
                 IF_SOME
                   {
-                    # of_some: Get-item:66 # @some : nat : @parameter%burn : @storage
+                    # of_some: Get-item:67 # @some : nat : @parameter%burn : @storage
                   }
                   {
-                    PUSH int 66; # int : nat : @parameter%burn : @storage
+                    PUSH int 67; # int : nat : @parameter%burn : @storage
                     FAILWITH;   # FAILED
                   }; # @some : nat : @parameter%burn : @storage
                 CDR;        # nat : nat : @parameter%burn : @storage
@@ -181,7 +181,7 @@ code
                 IF_SOME
                   {}
                   {
-                    PUSH int 67; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
+                    PUSH int 68; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
                     FAILWITH;   # FAILED
                   }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
                 CAR;        # map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn : @storage
@@ -198,10 +198,10 @@ code
                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                 IF_SOME
                   {
-                    # of_some: Get-item:67 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
+                    # of_some: Get-item:68 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                   }
                   {
-                    PUSH int 67; # int : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
+                    PUSH int 68; # int : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                     FAILWITH;   # FAILED
                   }; # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                 CDR;        # nat : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
@@ -210,7 +210,7 @@ code
                 IF_SOME
                   {}
                   {
-                    PUSH int 67; # int : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
+                    PUSH int 68; # int : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                     FAILWITH;   # FAILED
                   }; # @some : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
                 SWAP;       # map address nat : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%burn
@@ -237,7 +237,7 @@ code
                 IF_SOME
                   {}
                   {
-                    PUSH int 68; # int : bool : pair address (big_map address (pair (map address nat) nat))
+                    PUSH int 69; # int : bool : pair address (big_map address (pair (map address nat) nat))
                     FAILWITH;   # FAILED
                   }; # @some : bool : pair address (big_map address (pair (map address nat) nat))
                 SWAP;       # bool : @some : pair address (big_map address (pair (map address nat) nat))
@@ -250,140 +250,114 @@ code
           {
             IF_LEFT
               {
+                SWAP;       # @storage : @parameter%getAdministrator
                 # == getAdministrator ==
-                # sp.transfer(self.data.administrator, sp.tez(0), sp.contract(sp.TAddress, params.target).open_some()) # @parameter%getAdministrator : @storage
-                CONTRACT address; # option (contract address) : @storage
-                NIL operation; # list operation : option (contract address) : @storage
-                SWAP;       # option (contract address) : list operation : @storage
+                # sp.result(self.data.administrator) # @storage : @parameter%getAdministrator
+                DUP;        # @storage : @storage : @parameter%getAdministrator
+                DUG 2;      # @storage : @parameter%getAdministrator : @storage
+                CAAR;       # address : @parameter%getAdministrator : @storage
+                # sp.transfer(__s1.value, sp.tez(0), sp.contract(sp.TAddress, sp.snd(params)).open_some()) # address : @parameter%getAdministrator : @storage
+                NIL operation; # list operation : address : @parameter%getAdministrator : @storage
+                DIG 2;      # @parameter%getAdministrator : list operation : address : @storage
+                CDR;        # address : list operation : address : @storage
+                CONTRACT address; # option (contract address) : list operation : address : @storage
                 IF_SOME
                   {}
                   {
-                    PUSH int 89; # int : list operation : @storage
+                    PUSH int 5; # int : list operation : address : @storage
                     FAILWITH;   # FAILED
-                  }; # @some : list operation : @storage
-                PUSH mutez 0; # mutez : @some : list operation : @storage
-                DIG 3;      # @storage : mutez : @some : list operation
-                DUP;        # @storage : @storage : mutez : @some : list operation
-                DUG 4;      # @storage : mutez : @some : list operation : @storage
-                CAAR;       # address : mutez : @some : list operation : @storage
+                  }; # @some : list operation : address : @storage
+                PUSH mutez 0; # mutez : @some : list operation : address : @storage
+                DIG 3;      # address : mutez : @some : list operation : @storage
                 TRANSFER_TOKENS; # operation : list operation : @storage
                 CONS;       # list operation : @storage
               }
               {
                 IF_LEFT
                   {
+                    SWAP;       # @storage : @parameter%getAllowance
                     # == getAllowance ==
-                    # sp.transfer(self.data.balances[params.owner].approvals[params.spender], sp.tez(0), sp.contract(sp.TNat, params.contractAddress, entry_point='viewAllowance').open_some()) # @parameter%getAllowance : @storage
-                    DUP;        # @parameter%getAllowance : @parameter%getAllowance : @storage
-                    CAR;        # address : @parameter%getAllowance : @storage
-                    CONTRACT %viewAllowance nat; # option (contract nat) : @parameter%getAllowance : @storage
-                    NIL operation; # list operation : option (contract nat) : @parameter%getAllowance : @storage
-                    SWAP;       # option (contract nat) : list operation : @parameter%getAllowance : @storage
+                    # sp.result(self.data.balances[sp.fst(params).owner].approvals[sp.fst(params).spender]) # @storage : @parameter%getAllowance
+                    DUP;        # @storage : @storage : @parameter%getAllowance
+                    DUG 2;      # @storage : @parameter%getAllowance : @storage
+                    CADR;       # big_map address (pair (map %approvals address nat) (nat %balance)) : @parameter%getAllowance : @storage
+                    SWAP;       # @parameter%getAllowance : big_map address (pair (map %approvals address nat) (nat %balance)) : @storage
+                    DUP;        # @parameter%getAllowance : @parameter%getAllowance : big_map address (pair (map %approvals address nat) (nat %balance)) : @storage
+                    DUG 2;      # @parameter%getAllowance : big_map address (pair (map %approvals address nat) (nat %balance)) : @parameter%getAllowance : @storage
+                    CAAR;       # address : big_map address (pair (map %approvals address nat) (nat %balance)) : @parameter%getAllowance : @storage
+                    GET;        # option (pair (map %approvals address nat) (nat %balance)) : @parameter%getAllowance : @storage
+                    IF_SOME
+                      {
+                        # of_some: Get-item:39 # @some : @parameter%getAllowance : @storage
+                      }
+                      {
+                        PUSH int 39; # int : @parameter%getAllowance : @storage
+                        FAILWITH;   # FAILED
+                      }; # @some : @parameter%getAllowance : @storage
+                    CAR;        # map address nat : @parameter%getAllowance : @storage
+                    SWAP;       # @parameter%getAllowance : map address nat : @storage
+                    DUP;        # @parameter%getAllowance : @parameter%getAllowance : map address nat : @storage
+                    DUG 2;      # @parameter%getAllowance : map address nat : @parameter%getAllowance : @storage
+                    CADR;       # address : map address nat : @parameter%getAllowance : @storage
+                    GET;        # option nat : @parameter%getAllowance : @storage
+                    IF_SOME
+                      {
+                        # of_some: Get-item:39 # @some : @parameter%getAllowance : @storage
+                      }
+                      {
+                        PUSH int 39; # int : @parameter%getAllowance : @storage
+                        FAILWITH;   # FAILED
+                      }; # @some : @parameter%getAllowance : @storage
+                    # sp.transfer(__s2.value, sp.tez(0), sp.contract(sp.TNat, sp.snd(params)).open_some()) # @some : @parameter%getAllowance : @storage
+                    NIL operation; # list operation : @some : @parameter%getAllowance : @storage
+                    DIG 2;      # @parameter%getAllowance : list operation : @some : @storage
+                    CDR;        # address : list operation : @some : @storage
+                    CONTRACT nat; # option (contract nat) : list operation : @some : @storage
                     IF_SOME
                       {}
                       {
-                        PUSH int 81; # int : list operation : @parameter%getAllowance : @storage
+                        PUSH int 5; # int : list operation : @some : @storage
                         FAILWITH;   # FAILED
-                      }; # @some : list operation : @parameter%getAllowance : @storage
-                    PUSH mutez 0; # mutez : @some : list operation : @parameter%getAllowance : @storage
-                    DIG 4;      # @storage : mutez : @some : list operation : @parameter%getAllowance
-                    DUP;        # @storage : @storage : mutez : @some : list operation : @parameter%getAllowance
-                    DUG 5;      # @storage : mutez : @some : list operation : @parameter%getAllowance : @storage
-                    CADR;       # big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @parameter%getAllowance : @storage
-                    DIG 4;      # @parameter%getAllowance : big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @storage
-                    DUP;        # @parameter%getAllowance : @parameter%getAllowance : big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @storage
-                    DUG 5;      # @parameter%getAllowance : big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @parameter%getAllowance : @storage
-                    CDAR;       # address : big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @parameter%getAllowance : @storage
-                    GET;        # option (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @parameter%getAllowance : @storage
-                    IF_SOME
-                      {
-                        # of_some: Get-item:81 # @some : mutez : @some : list operation : @parameter%getAllowance : @storage
-                      }
-                      {
-                        PUSH int 81; # int : mutez : @some : list operation : @parameter%getAllowance : @storage
-                        FAILWITH;   # FAILED
-                      }; # @some : mutez : @some : list operation : @parameter%getAllowance : @storage
-                    CAR;        # map address nat : mutez : @some : list operation : @parameter%getAllowance : @storage
-                    DIG 4;      # @parameter%getAllowance : map address nat : mutez : @some : list operation : @storage
-                    CDDR;       # address : map address nat : mutez : @some : list operation : @storage
-                    GET;        # option nat : mutez : @some : list operation : @storage
-                    IF_SOME
-                      {
-                        # of_some: Get-item:81 # @some : mutez : @some : list operation : @storage
-                      }
-                      {
-                        PUSH int 81; # int : mutez : @some : list operation : @storage
-                        FAILWITH;   # FAILED
-                      }; # @some : mutez : @some : list operation : @storage
+                      }; # @some : list operation : @some : @storage
+                    PUSH mutez 0; # mutez : @some : list operation : @some : @storage
+                    DIG 3;      # @some : mutez : @some : list operation : @storage
                     TRANSFER_TOKENS; # operation : list operation : @storage
                     CONS;       # list operation : @storage
                   }
                   {
                     SWAP;       # @storage : @parameter%getBalance
                     # == getBalance ==
-                    # if ~ (self.data.balances.contains(params.owner)): # @storage : @parameter%getBalance
+                    # sp.result(self.data.balances[sp.fst(params)].balance) # @storage : @parameter%getBalance
                     DUP;        # @storage : @storage : @parameter%getBalance
                     DUG 2;      # @storage : @parameter%getBalance : @storage
                     CADR;       # big_map address (pair (map %approvals address nat) (nat %balance)) : @parameter%getBalance : @storage
                     SWAP;       # @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : @storage
                     DUP;        # @parameter%getBalance : @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : @storage
                     DUG 2;      # @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : @parameter%getBalance : @storage
-                    CDR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : @parameter%getBalance : @storage
-                    MEM;        # bool : @parameter%getBalance : @storage
-                    IF
-                      {}
-                      {
-                        SWAP;       # @storage : @parameter%getBalance
-                        # self.data.balances[params.owner] = sp.record(approvals = {}, balance = 0) # @storage : @parameter%getBalance
-                        DUP;        # @storage : @storage : @parameter%getBalance
-                        CDR;        # pair (bool %paused) (nat %totalSupply) : @storage : @parameter%getBalance
-                        SWAP;       # @storage : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        CAR;        # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        DUP;        # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        CAR;        # address : pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        SWAP;       # pair (address %administrator) (big_map %balances address (pair (map %approvals address nat) (nat %balance))) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        CDR;        # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        DIG 3;      # @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                        DUP;        # @parameter%getBalance : @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply)
-                        DUG 4;      # @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        CDR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        PUSH (option (pair (map %approvals address nat) (nat %balance))) (Some (Pair {} 0)); # option (pair (map %approvals address nat) (nat %balance)) : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        SWAP;       # address : option (pair (map %approvals address nat) (nat %balance)) : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        UPDATE;     # big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        SWAP;       # address : big_map address (pair (map %approvals address nat) (nat %balance)) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        PAIR;       # pair address (big_map address (pair (map %approvals address nat) (nat %balance))) : pair (bool %paused) (nat %totalSupply) : @parameter%getBalance
-                        PAIR;       # pair (pair address (big_map address (pair (map %approvals address nat) (nat %balance)))) (pair (bool %paused) (nat %totalSupply)) : @parameter%getBalance
-                        SWAP;       # @parameter%getBalance : pair (pair address (big_map address (pair (map %approvals address nat) (nat %balance)))) (pair (bool %paused) (nat %totalSupply))
-                      }; # @parameter%getBalance : @storage
-                    # sp.transfer(self.data.balances[params.owner].balance, sp.tez(0), sp.contract(sp.TNat, params.contractAddress, entry_point='viewBalance').open_some()) # @parameter%getBalance : @storage
-                    DUP;        # @parameter%getBalance : @parameter%getBalance : @storage
-                    CAR;        # address : @parameter%getBalance : @storage
-                    CONTRACT %viewBalance nat; # option (contract nat) : @parameter%getBalance : @storage
-                    NIL operation; # list operation : option (contract nat) : @parameter%getBalance : @storage
-                    SWAP;       # option (contract nat) : list operation : @parameter%getBalance : @storage
-                    IF_SOME
-                      {}
-                      {
-                        PUSH int 77; # int : list operation : @parameter%getBalance : @storage
-                        FAILWITH;   # FAILED
-                      }; # @some : list operation : @parameter%getBalance : @storage
-                    PUSH mutez 0; # mutez : @some : list operation : @parameter%getBalance : @storage
-                    DIG 4;      # @storage : mutez : @some : list operation : @parameter%getBalance
-                    DUP;        # @storage : @storage : mutez : @some : list operation : @parameter%getBalance
-                    DUG 5;      # @storage : mutez : @some : list operation : @parameter%getBalance : @storage
-                    CADR;       # big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @parameter%getBalance : @storage
-                    DIG 4;      # @parameter%getBalance : big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @storage
-                    CDR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @storage
-                    GET;        # option (pair (map %approvals address nat) (nat %balance)) : mutez : @some : list operation : @storage
+                    CAR;        # address : big_map address (pair (map %approvals address nat) (nat %balance)) : @parameter%getBalance : @storage
+                    GET;        # option (pair (map %approvals address nat) (nat %balance)) : @parameter%getBalance : @storage
                     IF_SOME
                       {
-                        # of_some: Get-item:77 # @some : mutez : @some : list operation : @storage
+                        # of_some: Get-item:35 # @some : @parameter%getBalance : @storage
                       }
                       {
-                        PUSH int 77; # int : mutez : @some : list operation : @storage
+                        PUSH int 35; # int : @parameter%getBalance : @storage
                         FAILWITH;   # FAILED
-                      }; # @some : mutez : @some : list operation : @storage
-                    CDR;        # nat : mutez : @some : list operation : @storage
+                      }; # @some : @parameter%getBalance : @storage
+                    CDR;        # nat : @parameter%getBalance : @storage
+                    # sp.transfer(__s3.value, sp.tez(0), sp.contract(sp.TNat, sp.snd(params)).open_some()) # nat : @parameter%getBalance : @storage
+                    NIL operation; # list operation : nat : @parameter%getBalance : @storage
+                    DIG 2;      # @parameter%getBalance : list operation : nat : @storage
+                    CDR;        # address : list operation : nat : @storage
+                    CONTRACT nat; # option (contract nat) : list operation : nat : @storage
+                    IF_SOME
+                      {}
+                      {
+                        PUSH int 5; # int : list operation : nat : @storage
+                        FAILWITH;   # FAILED
+                      }; # @some : list operation : nat : @storage
+                    PUSH mutez 0; # mutez : @some : list operation : nat : @storage
+                    DIG 3;      # nat : mutez : @some : list operation : @storage
                     TRANSFER_TOKENS; # operation : list operation : @storage
                     CONS;       # list operation : @storage
                   }; # list operation : @storage
@@ -395,22 +369,25 @@ code
           {
             IF_LEFT
               {
+                SWAP;       # @storage : @parameter%getTotalSupply
                 # == getTotalSupply ==
-                # sp.transfer(self.data.totalSupply, sp.tez(0), sp.contract(sp.TNat, params.target).open_some()) # @parameter%getTotalSupply : @storage
-                CONTRACT nat; # option (contract nat) : @storage
-                NIL operation; # list operation : option (contract nat) : @storage
-                SWAP;       # option (contract nat) : list operation : @storage
+                # sp.result(self.data.totalSupply) # @storage : @parameter%getTotalSupply
+                DUP;        # @storage : @storage : @parameter%getTotalSupply
+                DUG 2;      # @storage : @parameter%getTotalSupply : @storage
+                CDDR;       # nat : @parameter%getTotalSupply : @storage
+                # sp.transfer(__s4.value, sp.tez(0), sp.contract(sp.TNat, sp.snd(params)).open_some()) # nat : @parameter%getTotalSupply : @storage
+                NIL operation; # list operation : nat : @parameter%getTotalSupply : @storage
+                DIG 2;      # @parameter%getTotalSupply : list operation : nat : @storage
+                CDR;        # address : list operation : nat : @storage
+                CONTRACT nat; # option (contract nat) : list operation : nat : @storage
                 IF_SOME
                   {}
                   {
-                    PUSH int 85; # int : list operation : @storage
+                    PUSH int 5; # int : list operation : nat : @storage
                     FAILWITH;   # FAILED
-                  }; # @some : list operation : @storage
-                PUSH mutez 0; # mutez : @some : list operation : @storage
-                DIG 3;      # @storage : mutez : @some : list operation
-                DUP;        # @storage : @storage : mutez : @some : list operation
-                DUG 4;      # @storage : mutez : @some : list operation : @storage
-                CDDR;       # nat : mutez : @some : list operation : @storage
+                  }; # @some : list operation : nat : @storage
+                PUSH mutez 0; # mutez : @some : list operation : nat : @storage
+                DIG 3;      # nat : mutez : @some : list operation : @storage
                 TRANSFER_TOKENS; # operation : list operation : @storage
                 CONS;       # list operation : @storage
               }
@@ -486,7 +463,7 @@ code
                 IF_SOME
                   {}
                   {
-                    PUSH int 59; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
+                    PUSH int 60; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                     FAILWITH;   # FAILED
                   }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
                 DUP;        # @some : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%mint
@@ -629,10 +606,10 @@ code
                                 GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : @parameter%transfer : @storage
                                 IF_SOME
                                   {
-                                    # of_some: Get-item:26 # @some : nat : @parameter%transfer : @storage
+                                    # of_some: Get-item:13 # @some : nat : @parameter%transfer : @storage
                                   }
                                   {
-                                    PUSH int 26; # int : nat : @parameter%transfer : @storage
+                                    PUSH int 13; # int : nat : @parameter%transfer : @storage
                                     FAILWITH;   # FAILED
                                   }; # @some : nat : @parameter%transfer : @storage
                                 CAR;        # map address nat : nat : @parameter%transfer : @storage
@@ -640,10 +617,10 @@ code
                                 GET;        # option nat : nat : @parameter%transfer : @storage
                                 IF_SOME
                                   {
-                                    # of_some: Get-item:26 # @some : nat : @parameter%transfer : @storage
+                                    # of_some: Get-item:13 # @some : nat : @parameter%transfer : @storage
                                   }
                                   {
-                                    PUSH int 26; # int : nat : @parameter%transfer : @storage
+                                    PUSH int 13; # int : nat : @parameter%transfer : @storage
                                     FAILWITH;   # FAILED
                                   }; # @some : nat : @parameter%transfer : @storage
                                 COMPARE;    # int : @parameter%transfer : @storage
@@ -706,10 +683,10 @@ code
                     GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : @parameter%transfer : @storage
                     IF_SOME
                       {
-                        # of_some: Get-item:28 # @some : nat : @parameter%transfer : @storage
+                        # of_some: Get-item:15 # @some : nat : @parameter%transfer : @storage
                       }
                       {
-                        PUSH int 28; # int : nat : @parameter%transfer : @storage
+                        PUSH int 15; # int : nat : @parameter%transfer : @storage
                         FAILWITH;   # FAILED
                       }; # @some : nat : @parameter%transfer : @storage
                     CDR;        # nat : nat : @parameter%transfer : @storage
@@ -744,7 +721,7 @@ code
                     IF_SOME
                       {}
                       {
-                        PUSH int 29; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
+                        PUSH int 16; # int : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
                         FAILWITH;   # FAILED
                       }; # @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
                     CAR;        # map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : @storage
@@ -761,10 +738,10 @@ code
                     GET;        # option (pair (map %approvals address nat) (nat %balance)) : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     IF_SOME
                       {
-                        # of_some: Get-item:29 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        # of_some: Get-item:16 # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                       }
                       {
-                        PUSH int 29; # int : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        PUSH int 16; # int : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         FAILWITH;   # FAILED
                       }; # @some : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     CDR;        # nat : nat : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
@@ -773,7 +750,7 @@ code
                     IF_SOME
                       {}
                       {
-                        PUSH int 29; # int : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        PUSH int 16; # int : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         FAILWITH;   # FAILED
                       }; # @some : map address nat : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     SWAP;       # map address nat : @some : address : big_map address (pair (map %approvals address nat) (nat %balance)) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
@@ -804,7 +781,7 @@ code
                     IF_SOME
                       {}
                       {
-                        PUSH int 30; # int : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
+                        PUSH int 17; # int : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                         FAILWITH;   # FAILED
                       }; # @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     DUP;        # @some : @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
@@ -825,7 +802,7 @@ code
                     PAIR;       # pair address (big_map address (pair (map address nat) nat)) : pair (bool %paused) (nat %totalSupply) : @parameter%transfer
                     PAIR;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer
                     SWAP;       # @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                    # if (params.from_ != sp.sender) & (self.data.administrator != sp.sender): # @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                    # if (params.from_ != sp.sender) & (~ (sp.sender == self.data.administrator)): # @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                     DUP;        # @parameter%transfer : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                     CAR;        # address : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                     SENDER;     # address : address : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
@@ -833,13 +810,14 @@ code
                     NEQ;        # bool : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                     IF
                       {
-                        SENDER;     # address : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        DIG 2;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : address : @parameter%transfer
-                        DUP;        # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : address : @parameter%transfer
-                        DUG 3;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : address : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        CAAR;       # address : address : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        SWAP;       # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer
+                        DUP;        # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer
+                        DUG 2;      # pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply)) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        CAAR;       # address : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        SENDER;     # address : address : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         COMPARE;    # int : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
-                        NEQ;        # bool : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        EQ;         # bool : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                        NOT;        # bool : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                       }
                       {
                         PUSH bool False; # bool : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
@@ -869,7 +847,7 @@ code
                         IF_SOME
                           {}
                           {
-                            PUSH int 32; # int : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
+                            PUSH int 19; # int : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                             FAILWITH;   # FAILED
                           }; # @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
                         DUP;        # @some : @some : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply) : @parameter%transfer : pair (pair address (big_map address (pair (map address nat) nat))) (pair (bool %paused) (nat %totalSupply))
@@ -888,10 +866,10 @@ code
                         GET;        # option (pair (map address nat) nat) : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         IF_SOME
                           {
-                            # of_some: Get-item:32 # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            # of_some: Get-item:19 # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                           }
                           {
-                            PUSH int 32; # int : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            PUSH int 19; # int : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                             FAILWITH;   # FAILED
                           }; # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         CAR;        # map address nat : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
@@ -899,10 +877,10 @@ code
                         GET;        # option nat : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         IF_SOME
                           {
-                            # of_some: Get-item:32 # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            # of_some: Get-item:19 # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                           }
                           {
-                            PUSH int 32; # int : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            PUSH int 19; # int : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                             FAILWITH;   # FAILED
                           }; # @some : nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         SUB;        # int : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
@@ -910,7 +888,7 @@ code
                         IF_SOME
                           {}
                           {
-                            PUSH int 32; # int : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
+                            PUSH int 19; # int : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                             FAILWITH;   # FAILED
                           }; # @some : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)
                         SOME;       # option nat : address : map address nat : nat : address : big_map address (pair (map address nat) nat) : address : pair (bool %paused) (nat %totalSupply)

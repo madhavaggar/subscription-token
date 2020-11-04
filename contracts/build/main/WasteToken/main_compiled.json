@@ -46,23 +46,19 @@
               {
                 "prim": "or",
                 "args": [
-                  { "prim": "address", "annots": [ "%getAdministrator" ] },
+                  { "prim": "pair", "args": [ { "prim": "unit" }, { "prim": "address" } ], "annots": [ "%getAdministrator" ] },
                   {
                     "prim": "or",
                     "args": [
                       {
                         "prim": "pair",
                         "args": [
-                          { "prim": "address", "annots": [ "%contractAddress" ] },
-                          { "prim": "pair", "args": [ { "prim": "address", "annots": [ "%owner" ] }, { "prim": "address", "annots": [ "%spender" ] } ] }
+                          { "prim": "pair", "args": [ { "prim": "address", "annots": [ "%owner" ] }, { "prim": "address", "annots": [ "%spender" ] } ] },
+                          { "prim": "address" }
                         ],
                         "annots": [ "%getAllowance" ]
                       },
-                      {
-                        "prim": "pair",
-                        "args": [ { "prim": "address", "annots": [ "%contractAddress" ] }, { "prim": "address", "annots": [ "%owner" ] } ],
-                        "annots": [ "%getBalance" ]
-                      }
+                      { "prim": "pair", "args": [ { "prim": "address" }, { "prim": "address" } ], "annots": [ "%getBalance" ] }
                     ]
                   }
                 ]
@@ -75,7 +71,7 @@
               {
                 "prim": "or",
                 "args": [
-                  { "prim": "address", "annots": [ "%getTotalSupply" ] },
+                  { "prim": "pair", "args": [ { "prim": "unit" }, { "prim": "address" } ], "annots": [ "%getTotalSupply" ] },
                   { "prim": "pair", "args": [ { "prim": "address", "annots": [ "%address" ] }, { "prim": "nat", "annots": [ "%value" ] } ], "annots": [ "%mint" ] }
                 ]
               },
@@ -90,8 +86,8 @@
                       {
                         "prim": "pair",
                         "args": [
-                          { "prim": "address", "annots": [ "%from_" ] },
-                          { "prim": "pair", "args": [ { "prim": "address", "annots": [ "%to_" ] }, { "prim": "nat", "annots": [ "%value" ] } ] }
+                          { "prim": "address", "annots": [ "%from" ] },
+                          { "prim": "pair", "args": [ { "prim": "address", "annots": [ "%to" ] }, { "prim": "nat", "annots": [ "%value" ] } ] }
                         ],
                         "annots": [ "%transfer" ]
                       }
@@ -142,7 +138,7 @@
                           { "prim": "CDR" },
                           { "prim": "SENDER" },
                           { "prim": "GET" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "38" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "25" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "CAR" },
                           { "prim": "DIG", "args": [ { "int": "2" } ] },
                           { "prim": "DUP" },
@@ -189,7 +185,7 @@
                           { "prim": "DUP" },
                           { "prim": "DUG", "args": [ { "int": "2" } ] },
                           { "prim": "GET" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "40" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "27" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "DUP" },
                           { "prim": "CDR" },
                           { "prim": "SWAP" },
@@ -241,7 +237,7 @@
                           { "prim": "DUG", "args": [ { "int": "3" } ] },
                           { "prim": "CAR" },
                           { "prim": "GET" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "66" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "67" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "CDR" },
                           { "prim": "COMPARE" },
                           { "prim": "GE" },
@@ -274,7 +270,7 @@
                           { "prim": "DUP" },
                           { "prim": "DUG", "args": [ { "int": "2" } ] },
                           { "prim": "GET" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "67" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "68" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "CAR" },
                           { "prim": "DIG", "args": [ { "int": "5" } ] },
                           { "prim": "DUP" },
@@ -288,11 +284,11 @@
                           { "prim": "DUG", "args": [ { "int": "8" } ] },
                           { "prim": "CAR" },
                           { "prim": "GET" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "67" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "68" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "CDR" },
                           { "prim": "SUB" },
                           { "prim": "ISNAT" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "67" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "68" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "SWAP" },
                           { "prim": "PAIR" },
                           { "prim": "SOME" },
@@ -315,7 +311,7 @@
                           { "prim": "CDR" },
                           { "prim": "SUB" },
                           { "prim": "ISNAT" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "68" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "69" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "SWAP" },
                           { "prim": "PAIR" },
                           { "prim": "SWAP" },
@@ -330,16 +326,18 @@
                       "prim": "IF_LEFT",
                       "args": [
                         [
-                          { "prim": "CONTRACT", "args": [ { "prim": "address" } ] },
-                          { "prim": "NIL", "args": [ { "prim": "operation" } ] },
                           { "prim": "SWAP" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "89" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "DUP" },
+                          { "prim": "DUG", "args": [ { "int": "2" } ] },
+                          { "prim": "CAR" },
+                          { "prim": "CAR" },
+                          { "prim": "NIL", "args": [ { "prim": "operation" } ] },
+                          { "prim": "DIG", "args": [ { "int": "2" } ] },
+                          { "prim": "CDR" },
+                          { "prim": "CONTRACT", "args": [ { "prim": "address" } ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "5" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "PUSH", "args": [ { "prim": "mutez" }, { "int": "0" } ] },
                           { "prim": "DIG", "args": [ { "int": "3" } ] },
-                          { "prim": "DUP" },
-                          { "prim": "DUG", "args": [ { "int": "4" } ] },
-                          { "prim": "CAR" },
-                          { "prim": "CAR" },
                           { "prim": "TRANSFER_TOKENS" },
                           { "prim": "CONS" }
                         ],
@@ -348,31 +346,33 @@
                             "prim": "IF_LEFT",
                             "args": [
                               [
-                                { "prim": "DUP" },
-                                { "prim": "CAR" },
-                                { "prim": "CONTRACT", "args": [ { "prim": "nat" } ], "annots": [ "%viewAllowance" ] },
-                                { "prim": "NIL", "args": [ { "prim": "operation" } ] },
                                 { "prim": "SWAP" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "81" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "DUP" },
+                                { "prim": "DUG", "args": [ { "int": "2" } ] },
+                                { "prim": "CAR" },
+                                { "prim": "CDR" },
+                                { "prim": "SWAP" },
+                                { "prim": "DUP" },
+                                { "prim": "DUG", "args": [ { "int": "2" } ] },
+                                { "prim": "CAR" },
+                                { "prim": "CAR" },
+                                { "prim": "GET" },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "39" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "CAR" },
+                                { "prim": "SWAP" },
+                                { "prim": "DUP" },
+                                { "prim": "DUG", "args": [ { "int": "2" } ] },
+                                { "prim": "CAR" },
+                                { "prim": "CDR" },
+                                { "prim": "GET" },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "39" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "NIL", "args": [ { "prim": "operation" } ] },
+                                { "prim": "DIG", "args": [ { "int": "2" } ] },
+                                { "prim": "CDR" },
+                                { "prim": "CONTRACT", "args": [ { "prim": "nat" } ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "5" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                 { "prim": "PUSH", "args": [ { "prim": "mutez" }, { "int": "0" } ] },
-                                { "prim": "DIG", "args": [ { "int": "4" } ] },
-                                { "prim": "DUP" },
-                                { "prim": "DUG", "args": [ { "int": "5" } ] },
-                                { "prim": "CAR" },
-                                { "prim": "CDR" },
-                                { "prim": "DIG", "args": [ { "int": "4" } ] },
-                                { "prim": "DUP" },
-                                { "prim": "DUG", "args": [ { "int": "5" } ] },
-                                { "prim": "CDR" },
-                                { "prim": "CAR" },
-                                { "prim": "GET" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "81" } ] }, { "prim": "FAILWITH" } ], [] ] },
-                                { "prim": "CAR" },
-                                { "prim": "DIG", "args": [ { "int": "4" } ] },
-                                { "prim": "CDR" },
-                                { "prim": "CDR" },
-                                { "prim": "GET" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "81" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "DIG", "args": [ { "int": "3" } ] },
                                 { "prim": "TRANSFER_TOKENS" },
                                 { "prim": "CONS" }
                               ],
@@ -385,70 +385,17 @@
                                 { "prim": "SWAP" },
                                 { "prim": "DUP" },
                                 { "prim": "DUG", "args": [ { "int": "2" } ] },
-                                { "prim": "CDR" },
-                                { "prim": "MEM" },
-                                {
-                                  "prim": "IF",
-                                  "args": [
-                                    [],
-                                    [
-                                      { "prim": "SWAP" },
-                                      { "prim": "DUP" },
-                                      { "prim": "CDR" },
-                                      { "prim": "SWAP" },
-                                      { "prim": "CAR" },
-                                      { "prim": "DUP" },
-                                      { "prim": "CAR" },
-                                      { "prim": "SWAP" },
-                                      { "prim": "CDR" },
-                                      { "prim": "DIG", "args": [ { "int": "3" } ] },
-                                      { "prim": "DUP" },
-                                      { "prim": "DUG", "args": [ { "int": "4" } ] },
-                                      { "prim": "CDR" },
-                                      {
-                                        "prim": "PUSH",
-                                        "args": [
-                                          {
-                                            "prim": "option",
-                                            "args": [
-                                              {
-                                                "prim": "pair",
-                                                "args": [
-                                                  { "prim": "map", "args": [ { "prim": "address" }, { "prim": "nat" } ], "annots": [ "%approvals" ] },
-                                                  { "prim": "nat", "annots": [ "%balance" ] }
-                                                ]
-                                              }
-                                            ]
-                                          },
-                                          { "prim": "Some", "args": [ { "prim": "Pair", "args": [ [], { "int": "0" } ] } ] }
-                                        ]
-                                      },
-                                      { "prim": "SWAP" },
-                                      { "prim": "UPDATE" },
-                                      { "prim": "SWAP" },
-                                      { "prim": "PAIR" },
-                                      { "prim": "PAIR" },
-                                      { "prim": "SWAP" }
-                                    ]
-                                  ]
-                                },
-                                { "prim": "DUP" },
                                 { "prim": "CAR" },
-                                { "prim": "CONTRACT", "args": [ { "prim": "nat" } ], "annots": [ "%viewBalance" ] },
-                                { "prim": "NIL", "args": [ { "prim": "operation" } ] },
-                                { "prim": "SWAP" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "77" } ] }, { "prim": "FAILWITH" } ], [] ] },
-                                { "prim": "PUSH", "args": [ { "prim": "mutez" }, { "int": "0" } ] },
-                                { "prim": "DIG", "args": [ { "int": "4" } ] },
-                                { "prim": "DUP" },
-                                { "prim": "DUG", "args": [ { "int": "5" } ] },
-                                { "prim": "CAR" },
-                                { "prim": "CDR" },
-                                { "prim": "DIG", "args": [ { "int": "4" } ] },
-                                { "prim": "CDR" },
                                 { "prim": "GET" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "77" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "35" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                 { "prim": "CDR" },
+                                { "prim": "NIL", "args": [ { "prim": "operation" } ] },
+                                { "prim": "DIG", "args": [ { "int": "2" } ] },
+                                { "prim": "CDR" },
+                                { "prim": "CONTRACT", "args": [ { "prim": "nat" } ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "5" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "PUSH", "args": [ { "prim": "mutez" }, { "int": "0" } ] },
+                                { "prim": "DIG", "args": [ { "int": "3" } ] },
                                 { "prim": "TRANSFER_TOKENS" },
                                 { "prim": "CONS" }
                               ]
@@ -470,16 +417,18 @@
                       "prim": "IF_LEFT",
                       "args": [
                         [
-                          { "prim": "CONTRACT", "args": [ { "prim": "nat" } ] },
-                          { "prim": "NIL", "args": [ { "prim": "operation" } ] },
                           { "prim": "SWAP" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "85" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "DUP" },
+                          { "prim": "DUG", "args": [ { "int": "2" } ] },
+                          { "prim": "CDR" },
+                          { "prim": "CDR" },
+                          { "prim": "NIL", "args": [ { "prim": "operation" } ] },
+                          { "prim": "DIG", "args": [ { "int": "2" } ] },
+                          { "prim": "CDR" },
+                          { "prim": "CONTRACT", "args": [ { "prim": "nat" } ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "5" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "PUSH", "args": [ { "prim": "mutez" }, { "int": "0" } ] },
                           { "prim": "DIG", "args": [ { "int": "3" } ] },
-                          { "prim": "DUP" },
-                          { "prim": "DUG", "args": [ { "int": "4" } ] },
-                          { "prim": "CDR" },
-                          { "prim": "CDR" },
                           { "prim": "TRANSFER_TOKENS" },
                           { "prim": "CONS" }
                         ],
@@ -574,7 +523,7 @@
                           { "prim": "DUP" },
                           { "prim": "DUG", "args": [ { "int": "2" } ] },
                           { "prim": "GET" },
-                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "59" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                          { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "60" } ] }, { "prim": "FAILWITH" } ], [] ] },
                           { "prim": "DUP" },
                           { "prim": "CAR" },
                           { "prim": "SWAP" },
@@ -728,14 +677,14 @@
                                                   { "prim": "GET" },
                                                   {
                                                     "prim": "IF_NONE",
-                                                    "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "26" } ] }, { "prim": "FAILWITH" } ], [] ]
+                                                    "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "13" } ] }, { "prim": "FAILWITH" } ], [] ]
                                                   },
                                                   { "prim": "CAR" },
                                                   { "prim": "SENDER" },
                                                   { "prim": "GET" },
                                                   {
                                                     "prim": "IF_NONE",
-                                                    "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "26" } ] }, { "prim": "FAILWITH" } ], [] ]
+                                                    "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "13" } ] }, { "prim": "FAILWITH" } ], [] ]
                                                   },
                                                   { "prim": "COMPARE" },
                                                   { "prim": "GE" }
@@ -837,7 +786,7 @@
                                 { "prim": "DUG", "args": [ { "int": "3" } ] },
                                 { "prim": "CAR" },
                                 { "prim": "GET" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "28" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "15" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                 { "prim": "CDR" },
                                 { "prim": "COMPARE" },
                                 { "prim": "GE" },
@@ -873,7 +822,7 @@
                                 { "prim": "DUP" },
                                 { "prim": "DUG", "args": [ { "int": "2" } ] },
                                 { "prim": "GET" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "29" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "16" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                 { "prim": "CAR" },
                                 { "prim": "DIG", "args": [ { "int": "5" } ] },
                                 { "prim": "DUP" },
@@ -888,11 +837,11 @@
                                 { "prim": "DUG", "args": [ { "int": "8" } ] },
                                 { "prim": "CAR" },
                                 { "prim": "GET" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "29" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "16" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                 { "prim": "CDR" },
                                 { "prim": "SUB" },
                                 { "prim": "ISNAT" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "29" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "16" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                 { "prim": "SWAP" },
                                 { "prim": "PAIR" },
                                 { "prim": "SOME" },
@@ -918,7 +867,7 @@
                                 { "prim": "DUP" },
                                 { "prim": "DUG", "args": [ { "int": "2" } ] },
                                 { "prim": "GET" },
-                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "30" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "17" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                 { "prim": "DUP" },
                                 { "prim": "CAR" },
                                 { "prim": "SWAP" },
@@ -947,14 +896,15 @@
                                   "prim": "IF",
                                   "args": [
                                     [
-                                      { "prim": "SENDER" },
-                                      { "prim": "DIG", "args": [ { "int": "2" } ] },
+                                      { "prim": "SWAP" },
                                       { "prim": "DUP" },
-                                      { "prim": "DUG", "args": [ { "int": "3" } ] },
+                                      { "prim": "DUG", "args": [ { "int": "2" } ] },
                                       { "prim": "CAR" },
                                       { "prim": "CAR" },
+                                      { "prim": "SENDER" },
                                       { "prim": "COMPARE" },
-                                      { "prim": "NEQ" }
+                                      { "prim": "EQ" },
+                                      { "prim": "NOT" }
                                     ],
                                     [ { "prim": "PUSH", "args": [ { "prim": "bool" }, { "prim": "False" } ] } ]
                                   ]
@@ -982,7 +932,7 @@
                                       { "prim": "DUP" },
                                       { "prim": "DUG", "args": [ { "int": "2" } ] },
                                       { "prim": "GET" },
-                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "32" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "19" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                       { "prim": "DUP" },
                                       { "prim": "CDR" },
                                       { "prim": "SWAP" },
@@ -999,14 +949,14 @@
                                       { "prim": "DIG", "args": [ { "int": "9" } ] },
                                       { "prim": "CAR" },
                                       { "prim": "GET" },
-                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "32" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "19" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                       { "prim": "CAR" },
                                       { "prim": "SENDER" },
                                       { "prim": "GET" },
-                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "32" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "19" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                       { "prim": "SUB" },
                                       { "prim": "ISNAT" },
-                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "32" } ] }, { "prim": "FAILWITH" } ], [] ] },
+                                      { "prim": "IF_NONE", "args": [ [ { "prim": "PUSH", "args": [ { "prim": "int" }, { "int": "19" } ] }, { "prim": "FAILWITH" } ], [] ] },
                                       { "prim": "SOME" },
                                       { "prim": "SWAP" },
                                       { "prim": "UPDATE" },

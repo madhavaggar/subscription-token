@@ -1,60 +1,61 @@
 import smartpy as sp
 
-class WasteToken(sp.Contract):
-    def __init__(self, admin):
-        self.init(
-        paused = False,
-        balances = sp.big_map(
-            tvalue = sp.TRecord(
-                approvals = sp.TMap(
-                    sp.TAddress,
-                    sp.TNat
-                ),
-                balance = sp.TNat
-            )
-        ),
-        administrator = admin,
-        totalSupply = 0
-    )
+class FA12_core(sp.Contract):
+    def __init__(self, **extra_storage):
+        self.init(balances = sp.big_map(tvalue = sp.TRecord(approvals = sp.TMap(sp.TAddress, sp.TNat), balance = sp.TNat)), totalSupply = 0, **extra_storage)
 
     @sp.entry_point
     def transfer(self, params):
-        sp.set_type(params, sp.TRecord(from_ = sp.TAddress, to_ = sp.TAddress, value = sp.TNat).layout(("from_", ("to_", "value"))))
-        sp.verify((sp.sender == self.data.administrator) |
-            (~self.data.paused &
+        sp.set_type(params, sp.TRecord(from_ = sp.TAddress, to_ = sp.TAddress, value = sp.TNat).layout(("from_ as from", ("to_ as to", "value"))))
+        sp.verify(self.is_administrator(sp.sender) |
+            (~self.is_paused() &
                 ((params.from_ == sp.sender) |
                  (self.data.balances[params.from_].approvals[sp.sender] >= params.value))))
         self.addAddressIfNecessary(params.to_)
         sp.verify(self.data.balances[params.from_].balance >= params.value)
         self.data.balances[params.from_].balance = sp.as_nat(self.data.balances[params.from_].balance - params.value)
         self.data.balances[params.to_].balance += params.value
-        sp.if (params.from_ != sp.sender) & (self.data.administrator != sp.sender):
+        sp.if (params.from_ != sp.sender) & (~self.is_administrator(sp.sender)):
             self.data.balances[params.from_].approvals[sp.sender] = sp.as_nat(self.data.balances[params.from_].approvals[sp.sender] - params.value)
 
     @sp.entry_point
     def approve(self, params):
         sp.set_type(params, sp.TRecord(spender = sp.TAddress, value = sp.TNat).layout(("spender", "value")))
-        sp.verify(~self.data.paused)
+        sp.verify(~self.is_paused())
         alreadyApproved = self.data.balances[sp.sender].approvals.get(params.spender, 0)
         sp.verify((alreadyApproved == 0) | (params.value == 0), "UnsafeAllowanceChange")
         self.data.balances[sp.sender].approvals[params.spender] = params.value
 
-    @sp.entry_point
-    def setPause(self, params):
-        sp.set_type(params, sp.TBool)
-        sp.verify(sp.sender == self.data.administrator)
-        self.data.paused = params
+    def addAddressIfNecessary(self, address):
+        sp.if ~ self.data.balances.contains(address):
+            self.data.balances[address] = sp.record(balance = 0, approvals = {})
 
-    @sp.entry_point
-    def setAdministrator(self, params):
-        sp.set_type(params, sp.TAddress)
-        sp.verify(sp.sender == self.data.administrator)
-        self.data.administrator = params
+    @sp.view(sp.TNat)
+    def getBalance(self, params):
+        sp.result(self.data.balances[params].balance)
 
+    @sp.view(sp.TNat)
+    def getAllowance(self, params):
+        sp.result(self.data.balances[params.owner].approvals[params.spender])
+
+    @sp.view(sp.TNat)
+    def getTotalSupply(self, params):
+        sp.set_type(params, sp.TUnit)
+        sp.result(self.data.totalSupply)
+
+    # this is not part of the standard but can be supported through inheritance.
+    def is_paused(self):
+        return sp.bool(False)
+
+    # this is not part of the standard but can be supported through inheritance.
+    def is_administrator(self, sender):
+        return sp.bool(False)
+
+class FA12_mint_burn(FA12_core):
     @sp.entry_point
     def mint(self, params):
         sp.set_type(params, sp.TRecord(address = sp.TAddress, value = sp.TNat))
-        sp.verify(sp.sender == self.data.administrator)
+        sp.verify(self.is_administrator(sp.sender))
         self.addAddressIfNecessary(params.address)
         self.data.balances[params.address].balance += params.value
         self.data.totalSupply += params.value
@@ -62,31 +63,48 @@ class WasteToken(sp.Contract):
     @sp.entry_point
     def burn(self, params):
         sp.set_type(params, sp.TRecord(address = sp.TAddress, value = sp.TNat))
-        sp.verify(sp.sender == self.data.administrator)
+        sp.verify(self.is_administrator(sp.sender))
         sp.verify(self.data.balances[params.address].balance >= params.value)
         self.data.balances[params.address].balance = sp.as_nat(self.data.balances[params.address].balance - params.value)
         self.data.totalSupply = sp.as_nat(self.data.totalSupply - params.value)
 
-    def addAddressIfNecessary(self, address):
-        sp.if ~ self.data.balances.contains(address):
-            self.data.balances[address] = sp.record(balance = 0, approvals = {})
+class FA12_administrator(FA12_core):
+    def is_administrator(self, sender):
+        return sender == self.data.administrator
 
     @sp.entry_point
-    def getBalance(self, params):
-        self.addAddressIfNecessary(params.owner)
-        sp.transfer(self.data.balances[params.owner].balance, sp.tez(0), sp.contract(sp.TNat, params.contractAddress,  entry_point = "viewBalance").open_some())
+    def setAdministrator(self, params):
+        sp.set_type(params, sp.TAddress)
+        sp.verify(self.is_administrator(sp.sender))
+        self.data.administrator = params
 
-    @sp.entry_point
-    def getAllowance(self, params):
-        sp.transfer(self.data.balances[params.owner].approvals[params.spender], sp.tez(0), sp.contract(sp.TNat, params.contractAddress,  entry_point = "viewAllowance").open_some())
-
-    @sp.entry_point
-    def getTotalSupply(self, params):
-        sp.transfer(self.data.totalSupply, sp.tez(0), sp.contract(sp.TNat, params.target).open_some())
-
-    @sp.entry_point
+    @sp.view(sp.TAddress)
     def getAdministrator(self, params):
-        sp.transfer(self.data.administrator, sp.tez(0), sp.contract(sp.TAddress, params.target).open_some())
+        sp.set_type(params, sp.TUnit)
+        sp.result(self.data.administrator)
+
+class FA12_pause(FA12_core):
+    def is_paused(self):
+        return self.data.paused
+
+    @sp.entry_point
+    def setPause(self, params):
+        sp.set_type(params, sp.TBool)
+        sp.verify(self.is_administrator(sp.sender))
+        self.data.paused = params
+
+class WasteToken(FA12_mint_burn, FA12_administrator, FA12_pause, FA12_core):
+    def __init__(self, admin):
+        FA12_core.__init__(self, paused = False, administrator = admin)
+
+class Viewer(sp.Contract):
+    def __init__(self, t):
+        self.init(last = sp.none)
+        self.init_type(sp.TRecord(last = sp.TOption(t)))
+    @sp.entry_point
+    def target(self, params):
+        self.data.last = sp.some(params)
+        
 
 class Subscription(sp.Contract):
     def __init__(self,admin,requiredToAddress,requiredTokenAddress,requiredTokenAmount,requiredPeriodSeconds,requiredGasPrice):
@@ -130,35 +148,6 @@ class Subscription(sp.Contract):
     def addAddressIfNecessary(self, address):
         sp.if ~ self.data.extraNonce.contains(address):
             self.data.extraNonce[address] = sp.record(value = 0)
-            
-    @sp.entry_point        
-    def updateBalance(self,params):
-        sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, tokenAddress = sp.TAddress).layout(("subscriber","tokenAddress")))
-        c = sp.contract(
-            sp.TRecord(
-                owner = sp.TAddress,
-                contractAddress = sp.TAddress
-            ),
-            params.tokenAddress,
-            entry_point ="getBalance"
-        ).open_some()
-        trans = sp.record(owner = params.subscriber,contractAddress = sp.to_address(sp.self))
-        sp.transfer(trans,sp.mutez(0),c)
-    
-    @sp.entry_point    
-    def updateAllowance(self,params):
-        sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, spender = sp.TAddress, tokenAddress = sp.TAddress).layout(("spender",("subscriber","tokenAddress"))))
-        c = sp.contract(
-            sp.TRecord(
-                owner = sp.TAddress,
-                spender = sp.TAddress,
-                contractAddress = sp.TAddress
-            ),
-            params.tokenAddress,
-            entry_point ="getAllowance"
-        ).open_some()
-        trans = sp.record(owner = params.subscriber,spender = params.spender,contractAddress = sp.to_address(sp.self))
-        sp.transfer(trans,sp.mutez(0),c)
         
     def getHash(self,params):
         sp.set_type(params, sp.TRecord(subscriber = sp.TAddress, publisher = sp.TAddress, tokenAddress = sp.TAddress, tokenAmount = sp.TNat, periodSeconds = sp.TInt, gasPrice = sp.TNat, nonce = sp.TNat).layout(("subscriber",("publisher",("tokenAddress",("tokenAmount",("periodSeconds", ("gasPrice","nonce"))))))))
@@ -200,16 +189,6 @@ class Subscription(sp.Contract):
         sp.verify(params.subscriber != params.publisher)
         sp.verify(sp.now >= self.data.times[element.value].nextValidTimeStamp)
         self.data.times[element.value].ready = sp.bool(True)
-            
-    @sp.entry_point
-    def viewBalance(self,params):
-        sp.set_type(params, sp.TNat)
-        self.data.balance = params
-    
-    @sp.entry_point
-    def viewAllowance(self,params):
-        sp.set_type(params, sp.TNat)
-        self.data.allowance = params
     
     @sp.entry_point
     def executeSubs(self,params):   
@@ -325,34 +304,34 @@ if "templates" not in __name__:
         scenario.h2("Approve First")
         scenario += c2.approve(spender = c1.address, value = 1200).run(sender = alice)
         
-        scenario.h2("Update Balance")
-        scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Balance")
+        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
         
-        scenario.h2("Update Allowance")
-        scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Allowance")
+        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
         
         
         scenario.h2("Execute Subscription")
-        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True)
+        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True)
         
-        scenario.h2("Update Balance")
-        scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Balance")
+        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
         
-        scenario.h2("Update Allowance")
-        scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Allowance")
+        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
         
        
         scenario.h2("Execute Subscription - 2")
-        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,now = 60)
+        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True, now = sp.timestamp(60))
         
-        scenario.h2("Update Balance")
-        scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Balance")
+        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
         
-        scenario.h2("Update Allowance")
-        scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Allowance")
+        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
         
         scenario.h2("Cancel Subscription")
-        scenario += c1.cancelSub(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,sender = alice)
+        scenario += c1.cancelSub(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 0,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True,sender = alice)
         
         
         
@@ -365,32 +344,32 @@ if "templates" not in __name__:
         scenario.h2("Mint for Alice First")
         scenario += c2.mint(address = alice.address, value = 1200).run(sender = admin)
         
-        scenario.h2("Update Balance")
-        scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Balance")
+        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
         
-        scenario.h2("Update Allowance")
-        scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Allowance")
+        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
         
         
         scenario.h2("Execute Subscription")
-        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True)
+        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True, sender = admin)
         
-        scenario.h2("Update Balance")
-        scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Balance")
+        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
         
-        scenario.h2("Update Allowance")
-        scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Allowance")
+        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
         
        
         scenario.h2("Execute Subscription - 2")
-        scenario += c1.executeSubs(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,now = 120)
+        scenario += c1.executeSubs(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True,now = sp.timestamp(120), sender = admin)
         
-        scenario.h2("Update Balance")
-        scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Balance")
+        #scenario += c1.updateBalance(params = sp.record(subscriber = alice.address, tokenAddress = c2.address)).run(valid=True)
         
-        scenario.h2("Update Allowance")
-        scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
+        #scenario.h2("Update Allowance")
+        #scenario += c1.updateAllowance(params = sp.record(subscriber = alice.address,spender = c1.address, tokenAddress = c2.address)).run(valid=True)
         
         scenario.h2("Cancel Subscription")
-        scenario += c1.cancelSub(params = sp.record(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key)).run(valid = True,sender = alice)
+        scenario += c1.cancelSub(subscriber = alice.address, publisher = admin.address, tokenAddress = c2.address, tokenAmount = 100, periodSeconds = 60, gasPrice = 5,nonce = 1, userSignature = sig_from_alice, subs_pub_key = alice.public_key).run(valid = True,sender = alice)
         

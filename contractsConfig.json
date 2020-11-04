@@ -16,6 +16,6 @@
   "interactionConfig": {
     "node": "https://testnet.tezster.tech"
   },
-  "WasteTokenContractAddress": "KT1Ud1DqRdABcT94rK1meRH1aVozoGjiG7kz",
-  "SubscriptionContractAddress": "KT1RixKVGNb5qHJoFSZ7ma2r2sUV1AZnaibe"
+  "WasteTokenContractAddress": "KT1QZrRJzbVByiZKh8wDSusnTm66aNPAJBru",
+  "SubscriptionContractAddress": "KT1Sndq2SMBzCD7tBPj2t1fqK5JW55nvj7q2"
 }

@@ -44,7 +44,7 @@ web3.eth.getAccounts().then((_accounts) => {
 //    console.log("No deploy.network found exiting...")
 //    process.exit()
 //}
-const NETWORK = 0
+const NETWORK = 5
 console.log("NETWORK:", NETWORK)
 
 let subscriptionListKey = "subscriptionListTokenSubDotCom" + NETWORK
@@ -56,7 +56,7 @@ let redisPort = 57300
 let LOOPTIME = 15000
 
 if (NETWORK > 0 && NETWORK < 9) {
-    redisHost = '65.0.41.80'
+    redisHost = 'ec2-65-0-41-80.ap-south-1.compute.amazonaws.com'
     redisPort = 6379
     LOOPTIME = 15000
 }
@@ -87,6 +87,7 @@ async function startParsers() {
                 subscriptions = JSON.parse(result)
             } catch (e) { contracts = [] }
             if (!subscriptions) subscriptions = []
+            console.log("\n================================OP================================\n")
             console.log("current subscriptions:", subscriptions.length)
             for (let t in subscriptions) {
                 try {
@@ -138,6 +139,7 @@ async function startParsers() {
                     //}
                 } catch (e) { console.log(e) }
             }
+            console.log("\n================================END================================\n")
         });
     }, LOOPTIME)
 }
